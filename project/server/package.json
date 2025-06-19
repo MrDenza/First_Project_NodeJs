@@ -1,0 +1,14 @@
+{
+  "name": "first_project_nodejs-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon app.js",
+    "start": "cross-env NODE_ENV=production node app.js"
+  },
+  "keywords": [],
+  "author": "Denza",
+  "license": "ISC",
+  "type": "commonjs"
+}

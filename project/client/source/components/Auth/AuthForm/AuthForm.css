@@ -1,0 +1,46 @@
+.auth__form {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	color: #004d40;
+	background-color: #f7fdf9;
+}
+.auth__title {
+	font-size: 20px;
+	font-weight: bold;
+	color: #00695c;
+	text-align: center;
+}
+.auth__field-box {
+	margin: 5px 0;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+.auth__input {
+	padding: 8px 12px;
+	border-radius: 6px;
+	border: 1px solid #009879;
+	outline: none;
+	font-size: 14px;
+	transition: box-shadow 0.3s ease;
+}
+.auth__input:focus {
+	box-shadow: 0 0 6px rgba(0, 152, 121, 0.6);
+}
+.auth__divider {
+	margin: 5px 0;
+	border: none;
+	border-top: 1px solid #ccc;
+}
+.auth__errors {
+	text-align: justify;
+	padding: 0 10px 0 30px;
+	margin: 0;
+	color: red;
+	font-size: 14px;
+}
+.auth__error {
+	font-weight: bold;
+}

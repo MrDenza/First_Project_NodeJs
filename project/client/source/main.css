@@ -1,0 +1,16 @@
+/* ------------------------- Style -------------------------- */
+:root {
+    --vh: 100vh;
+}
+
+html,
+body,
+#root {
+    width: 100%;
+
+    height: var(--vh);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+}

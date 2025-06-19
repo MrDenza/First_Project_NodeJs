@@ -1,0 +1,10 @@
+**/.idea
+**/node_modules
+.vscode/
+**/.vite
+**/_server.log
+**/uploads
+users.json
+**/delete
+.env
+.env.*
