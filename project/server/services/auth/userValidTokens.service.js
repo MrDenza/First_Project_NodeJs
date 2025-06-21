@@ -8,8 +8,7 @@ module.exports = {
         if (!payload || payload.type !== 'refresh') return null;
 
         // 2. Поиск активной сессии
-        const tokenHash = tokenService.hashToken(refreshToken);
-        return db.repositories.Session.findByTokenHash(tokenHash);
+        return db.repositories.Session.findByTokenHash(refreshToken);
     },
 
     // Обновляет access токен при необходимости
@@ -36,6 +35,7 @@ module.exports = {
                 clientInfo.session_id,
                 {
                     user_id: clientInfo.user_id,
+                    username: clientInfo.username,
                     ip_address: clientInfo.ip_address,
                     device_info: clientInfo.device_info,
                 }, transaction);
@@ -49,39 +49,3 @@ module.exports = {
         }
     }
 };
-
-
-
-
-
-
-
-
-    // // Проверка на наличие и валидность access токена
-    // async validateAndRefreshAccToken(accessToken, clientInfo) {
-    //     const activeSession = await sessionRepo.findActiveSession(accessToken);
-    //     console.log(accessToken);
-    //     console.log(activeSession);
-    //     console.log(tokenService.isTokenValidAndNotExpiringSoon(accessToken));
-    //     if (activeSession && tokenService.isTokenValidAndNotExpiringSoon(accessToken)) {
-    //         return {
-    //             token: accessToken,
-    //             isNew: false,
-    //             //session: activeSession
-    //         };
-    //     }
-    //
-    //     if (activeSession) await sessionRepo.revokeSession(activeSession.id);
-    //
-    //     const newToken = tokenService.generateAccessToken(clientInfo.user_id);
-    //     const newSession = await sessionRepo.createSession({
-    //         access_token: newToken,
-    //         ...clientInfo
-    //     });
-    //
-    //     return {
-    //         token: newToken,
-    //         isNew: true
-    //         //session: newSession
-    //     };
-    // },

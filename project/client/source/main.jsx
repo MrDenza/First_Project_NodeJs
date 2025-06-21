@@ -5,12 +5,6 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore } from './redux/store';
 
-const syncAuthState = (state) => {
-	if (state?.userData?.accessToken) {
-		localStorage.setItem('accessToken', state.userData.accessToken);
-	}
-};
-
 const init100vh = () => {
 	const setHeight = () => {
 		const vh = window.innerHeight;
@@ -25,7 +19,6 @@ delete window.__PRELOADED_STATE__;
 const store = createStore(preloadedState);
 
 if (typeof window !== 'undefined') {
-	syncAuthState(preloadedState);
 	init100vh();
 }
 

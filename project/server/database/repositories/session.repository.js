@@ -3,9 +3,9 @@ const tokenService = require('../../services/token.service');
 
 module.exports = (models) => ({
     // Создать новую сессию (30 дней по умолчанию) (опционально генерация access)
-    async create({userId, ipAddress, deviceInfo = null}, generateAToken = false, transaction = null) {
+    async create({userId, ipAddress, deviceInfo = null, username}, generateAToken = false, transaction = null) {
         const rToken = await tokenService.generateRefreshTokenAsync();
-        const aToken = generateAToken ? await tokenService.generateAccessTokenAsync(userId) : '';
+        const aToken = generateAToken ? await tokenService.generateAccessTokenAsync({userId, username}) : '';
         const session = await models.Session.create({
             user_id: userId,
             token_hash: tokenService.hashToken(rToken),
@@ -30,7 +30,8 @@ module.exports = (models) => ({
     // },
 
     // Найти активную сессию по хешу refresh токена
-    async findByTokenHash(tokenHash) {
+    async findByTokenHash(refreshToken) {
+        const tokenHash = tokenService.hashToken(refreshToken);
         return models.Session.findOne({
             where: {
                 token_hash: tokenHash,
@@ -45,8 +46,8 @@ module.exports = (models) => ({
     },
 
     // Обновить access токен в сессии + информацию
-    async updateAccessTokenAndInfo(sessionId, { ip_address, device_info, user_id }, transaction = null) {
-        const aToken = await tokenService.generateAccessTokenAsync(user_id);
+    async updateAccessTokenAndInfo(sessionId, { ip_address, device_info, user_id, username }, transaction = null) {
+        const aToken = await tokenService.generateAccessTokenAsync({user_id, username});
         const [affectedCount] = await models.Session.update(
             {
                 access_token: aToken,
@@ -98,6 +99,21 @@ module.exports = (models) => ({
             }
         );
         return affectedCount;
+    },
+
+    // Удалить сессию по refresh токену
+    async deleteByRefreshToken(refreshToken, transaction = null) {
+        if (!refreshToken) return false;
+
+        const tokenHash = tokenService.hashToken(refreshToken);
+
+        const result = await models.Session.destroy({
+            where: {
+                token_hash: tokenHash
+            },
+            transaction
+        });
+        return result > 0;
     },
 
     // Получить все сессии пользователя (с фильтрацией по активности)

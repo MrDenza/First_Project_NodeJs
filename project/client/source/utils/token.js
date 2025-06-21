@@ -4,14 +4,19 @@ export const decodeJwt = (token) => {
         const payloadJson = atob(payloadBase64.replace(/-/g, '+').replace(/_/g, '/'));
         return JSON.parse(payloadJson);
     } catch (e) {
-        console.error('Invalid JWT', e);
         return null;
     }
 };
 
-export const isTokenValid = (token) => {
+export const isTokenValid = (token, expireThreshold = 300) => {
+    // истёк ли токен и срок действия не меньше 5 минут
     if (!token) return false;
+
     const payload = decodeJwt(token);
     if (!payload?.exp) return false;
-    return Date.now() < payload.exp * 1000;
+
+    const currentTime = Date.now() / 1000;
+    const expiresIn = payload.exp - currentTime;
+
+    return expiresIn > expireThreshold;
 };

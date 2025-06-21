@@ -16,7 +16,7 @@ module.exports = async function handleUserValidTokens (req, res) {
                 success: false,
                 code: 'TOKENS_MISSING',
                 status: 401,
-                message: 'Требуется повторная авторизация.',
+                message: 'Требуется авторизация.',
                 data: {
                     isValid: false,
                 }
@@ -41,6 +41,7 @@ module.exports = async function handleUserValidTokens (req, res) {
         // Валидируем и создаём новый access токен
         const clientInfo = {
             user_id: session.user_id,
+            username: session.user.username,
             session_id: session.id,
             ip_address: req.ip,
             //device_info: req.device.type || 'Информация отсутствует'
@@ -50,7 +51,7 @@ module.exports = async function handleUserValidTokens (req, res) {
             accessToken,
             clientInfo
         );
-        console.log(session.user);
+
         return res.status(200).json({
             success: true,
             code: 'SESSION_VALID',

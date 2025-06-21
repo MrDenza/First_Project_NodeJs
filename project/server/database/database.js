@@ -50,10 +50,10 @@ const { models, repositories } = require('./models')(sequelize);
 
 logModelAssociations(models, { detailed: true, colors: true });
 
-sequelize.addHook('afterConnect', (connection, config) => {
+sequelize.addHook('afterConnect', () => {
     console.log('Установлено новое соединение с БД');
 });
-sequelize.addHook('beforeDisconnect', (connection) => {
+sequelize.addHook('beforeDisconnect', () => {
     console.log('Соединение с БД будет закрыто');
 });
 

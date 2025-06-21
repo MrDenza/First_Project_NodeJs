@@ -1,0 +1,68 @@
+.appnavbar__container {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	padding: 20px 10px;
+	box-sizing: border-box;
+}
+.appnavbar__link-logo span, .appnavbar__btn-user span {
+	border-radius: 50%;
+	display: flex;
+	border: 2px solid white;
+	box-sizing: content-box;
+}
+.appnavbar__link-logo svg, .appnavbar__btn-user svg {
+	fill: white;
+	width: 100%;
+	height: 100%;
+}
+.appnavbar__btn-user svg {
+	margin: 5px;
+}
+.appnavbar__user-btn-box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+}
+.appnavbar__user-btn-box a svg, .appnavbar__btn-quit svg {
+	fill: #969696;
+	width: 40px;
+	height: 40px;
+	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.appnavbar__user-btn-box a:hover svg, .appnavbar__btn-quit:hover svg {
+	fill: white;
+	transform: scale(1.2);
+}
+.appnavbar__container a {
+	background: none;
+	border: none;
+	padding: 0;
+	margin: 0;
+	font: inherit;
+	color: inherit;
+	cursor: pointer;
+	outline: none;
+	display: inline-flex;
+	align-items: center;
+}
+.appnavbar__container ul, ol {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.appnavbar__container li {
+	padding: 0;
+	margin: 0;
+}
+.appnavbar__user-box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+}

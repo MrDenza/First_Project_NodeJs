@@ -1,69 +1,141 @@
-import PageAuth from "../pages/Auth/PageAuth";
+import PageAuth from "../pages/app/auth/AuthPage";
 import SafeNavigate from "../components/routes/SafeNavigate";
 import { Outlet } from "react-router-dom";
-import { CLIENT_ROUTES } from "../constants/clientRoutes";
-import ErrorPage from "../pages/ErrorPage";
-import { checkAuth } from "../redux/reducers/userData/userDataSlice";
-import MessariaPage from "../pages/Messaria";
-
-function relativePath(fullPath, basePath) {
-    if (basePath === undefined) {
-        // Если передан только fullPath, удаляем ведущий слэш
-        return fullPath.replace(/^\//, "");
-    } else {
-        // Если переданы оба аргумента
-        if (fullPath.startsWith(basePath)) {
-            return fullPath.slice(basePath.length).replace(/^\//, "");
-        }
-        return fullPath;
-    }
-}
+import ErrorPage from "../pages/app/error/ErrorPage";
+import { refreshToken } from "../redux/reducers/userAuth/userAuthSlice";
+import AppLayout from "../layouts/AppLayout";
+import NewsListPage from "../pages/app/posts/NewsListPage";
+import NewsItemPage from "../pages/app/posts/NewsItemPage";
+import FeedPage from "../pages/app/feed/FeedPage";
+import NewsLayout from "../layouts/NewsLayout";
+import UserLayout from "../layouts/UserLayout";
+import UserSettingsPage from "../pages/app/user/UserSettingsPage";
+import AuthLayout from "../layouts/AuthLayout";
 
 export const routeConfig = [
     {
-        path: CLIENT_ROUTES.all,
+        path: "/",
         element: <Outlet />,
         children: [
+            // App
             {
-                path: relativePath(CLIENT_ROUTES.auth.base),
-                element: <Outlet />,
+                element: <AppLayout />,
+                ssrLoadData: () => refreshToken(), // Thunk
                 children: [
+                    // Home
                     {
-                        path: relativePath(CLIENT_ROUTES.auth.login, CLIENT_ROUTES.auth.base),
-                        element: <PageAuth mode="login" />,
+                        index: true,
+                        element: <span>home</span>,
                     },
+                    // Auth
                     {
-                        path: relativePath(CLIENT_ROUTES.auth.register, CLIENT_ROUTES.auth.base),
-                        element: <PageAuth mode="register" />,
+                        path: "auth",
+                        element: <AuthLayout />,
+                        children: [
+                            // Sign-in
+                            {
+                                path: "sign-in",
+                                element: <PageAuth mode="login" />,
+                            },
+                            // Sign-up
+                            {
+                                path: "sign-up",
+                                element: <PageAuth mode="register" />,
+                            },
+                            // Verified
+                            {
+                                path: "verified",
+                                element: <PageAuth mode="verified" />,
+                            },
+                            // Ошибка пути
+                            {
+                                path: "*",
+                                element: <SafeNavigate to="/auth/sign-in" replace />
+                            }
+                        ],
                     },
+                    // Feed
                     {
-                        path: relativePath(CLIENT_ROUTES.auth.verified, CLIENT_ROUTES.auth.base),
-                        element: <PageAuth mode="verified" />,
+                        path: "feed",
+                        element: <FeedPage />,
+                    },
+                    // News
+                    {
+                        path: "news",
+                        element: <NewsLayout />,
+                        children: [
+                            // Posts - search
+                            {
+                                path: "search",
+                                element: <NewsListPage mode="search" />,
+                            },
+                            // Posts - favorites
+                            {
+                                path: "favorites",
+                                element: <NewsListPage mode="favorites" />,
+                                private: true,
+                                privateRedirectTo: "/auth/sign-in",
+                            },
+
+                            // Posts - view
+                            {
+                                path: "view/:id(\\d+)",
+                                element: <NewsItemPage mode="view" />,
+                            },
+                            // Posts - create
+                            {
+                                path: "create",
+                                element: <NewsItemPage mode="create" />,
+                                private: true,
+                                privateRedirectTo: "/auth/sign-in",
+                            },
+                            // Posts - edit
+                            {
+                                path: "edit/:id(\\d+)",
+                                element: <NewsItemPage mode="edit" />,
+                                private: true,
+                                privateRedirectTo: "/auth/sign-in",
+                            },
+
+                            // Ошибка пути
+                            {
+                                path: "*",
+                                element: <SafeNavigate to="/news/search" replace />,
+                            },
+
+                        ]
+                    },
+                    // User
+                    {
+                        path: "user",
+                        element: <UserLayout />,
+                        private: true,
+                        privateRedirectTo: "/auth/sign-in",
+                        children: [
+                            // Settings
+                            {
+                                path: "settings",
+                                element: <UserSettingsPage />,
+                            },
+                            // Ошибка пути
+                            {
+                                path: "*",
+                                element: <SafeNavigate to="/user/settings" replace />,
+                            },
+                        ]
+                    },
+                    // Error
+                    {
+                        path: "error",
+                        element: <ErrorPage />,
                     },
                 ],
             },
+            // Ошибка пути
             {
-                path: relativePath(CLIENT_ROUTES.app.home),
-                element: <MessariaPage/>,
-                private: true,
-                privateRedirectTo: CLIENT_ROUTES.auth.login,
-                ssrLoadData: () => checkAuth(), // Thunk
-            },
-            {
-                path: relativePath(CLIENT_ROUTES.error),
-                element: <ErrorPage/>,
-            },
-            {
-                path: CLIENT_ROUTES.all, // любая ошибочная страница отправляет на авторизацию
-                element: <SafeNavigate to={CLIENT_ROUTES.auth.login} replace />,
-            },
+                path: "*",
+                element: <SafeNavigate to="/error" replace />,
+            }
         ],
     },
 ];
-
-// path – путь маршрута (например, полный "auth/sign-in", разложенный если есть children "home">"albums", *);
-// element – компонент, который будет отрисован по этому маршруту;
-// private – если true, маршрут считается приватным и требует авторизации;
-// privateRedirectTo – путь, на который перенаправляется пользователь, если он не авторизован;
-// ---publicRedirectTo – используется для публичных маршрутов, если нужно сделать редирект;
-// children – вложенные маршруты (подмаршруты), также могут содержать те же поля;

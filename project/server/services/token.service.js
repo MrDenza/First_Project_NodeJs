@@ -4,10 +4,10 @@ const { TOKEN_SECRET, ACCESS_EXP_TOKEN, REFRESH_EXP_TOKEN, HASH_SECRET } = proce
 
 module.exports = {
     // Генерация JWT токена доступа
-    generateAccessTokenAsync(userId) {
+    generateAccessTokenAsync(info) {
         return new Promise((resolve, reject) => {
             jwt.sign(
-                { userId },
+                info,
                 TOKEN_SECRET,
                 { expiresIn: ACCESS_EXP_TOKEN },
                 (err, token) => {
@@ -61,7 +61,7 @@ module.exports = {
     },
 
     // Просрочка валидного токена
-    async isTokenFreshAsync(token, thresholdPercentage = 20) {
+    async isTokenFreshAsync(token, thresholdPercentage = 5) {
         const decoded = await this.verifyTokenAsync(token);
         if (!decoded) return false;
 

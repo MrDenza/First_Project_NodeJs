@@ -4,5 +4,6 @@ export const API_ROUTES = {
         register: "/api/user/register",
         resendVerification: "/api/user/resend-verification",
         validToken: "/api/user/validate-tokens",
+        logout: "/api/user/logout"
     },
 };

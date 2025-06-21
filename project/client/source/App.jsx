@@ -2,10 +2,9 @@ import "./App.css";
 import PagesRouter from "./routes/PagesRouter";
 
 function App() {
-
     return (
         <div className="container">
-            <div className="app__box">
+            <div className="box">
                 <PagesRouter/>
             </div>
         </div>

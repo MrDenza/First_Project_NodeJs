@@ -81,7 +81,7 @@ module.exports = async function handleActivation (req, res) {
         });
 
         // Редирект домой
-        res.redirect(`/messaria`);
+        res.redirect(`/feed`);
 
     } catch (error) {
         console.error('Activation error: ', error);

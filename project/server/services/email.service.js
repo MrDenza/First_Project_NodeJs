@@ -48,7 +48,7 @@ const sendActivationLink = async ({email, username, token}) => {
     <p>Для успешной активации аккаунта перейдите по ссылке: <a href="${activationLink}">Активировать аккаунт</a></p>
     <p>Или скопируйте ссылку в браузер: ${activationLink}</p>
     `
-    console.log('Отправлено письмо на ', email);
+    console.log(`Отправлено письмо ${username} на ${email}`);
     console.log("Ссылка: ", activationLink);
     //!
     // await sendEmail({

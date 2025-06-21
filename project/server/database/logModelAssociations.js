@@ -45,7 +45,7 @@ module.exports = function logModelAssociations(models, options = {}) {
                 console.log(`  ${colorAssoc}${assocName}${colorReset}: ${colorType}${assocType}${colorReset} → ${colorModel}${targetModel}${colorReset}`);
 
                 if (detailed) {
-                    const cleanedOptions = cleanAssociationOptions(association.options);
+                    //const cleanedOptions = cleanAssociationOptions(association.options);
                     console.log(`    Внешний ключ: ${colorOption}${association.foreignKey || 'по умолчанию'}${colorReset}`);
                     //console.log('    Опции:', cleanedOptions);
                 }

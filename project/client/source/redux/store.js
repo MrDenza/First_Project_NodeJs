@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userDataSlice from "./reducers/userData/userDataSlice";
+import userAuthSlice from "./reducers/userAuth/userAuthSlice";
 
 export function createStore(preloadedState = {}, serverReq = null) {
     return configureStore({
         reducer: {
-            userData: userDataSlice,
+            userAuth: userAuthSlice,
         },
         preloadedState,
         middleware: (getDefaultMiddleware) =>

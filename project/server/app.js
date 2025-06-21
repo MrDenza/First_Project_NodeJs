@@ -6,7 +6,7 @@ const express = require("express");
 const http = require("http");
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
-const { STATIC_FILES_DIR, LOG_FILE } = require("./config/paths.config");
+const { STATIC_FILES_DIR } = require("./config/paths.config");
 const { PORT } = require("./config/server.config");
 const { initEmailService } = require('./services/email.service');
 //const { initWebSocketServer } = require("./ws/websocket.server");

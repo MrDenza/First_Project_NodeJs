@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import ProtectedRoute from "../components/routes/ProtectedRoute";
+import ProtectedRoute from "./ProtectedRoute";
 import { routeConfig } from "./routes";
 
 function renderRoutes(routes) {
@@ -12,9 +12,8 @@ function renderRoutes(routes) {
             route.element
         );
 
-
         return (
-            <Route key={idx} path={route.path} element={element}>
+            <Route key={idx} path={route.path} element={element} index={route.index}>
                 {route.children && renderRoutes(route.children)}
             </Route>
         );

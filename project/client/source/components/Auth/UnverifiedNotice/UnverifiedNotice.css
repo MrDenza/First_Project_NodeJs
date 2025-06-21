@@ -4,9 +4,9 @@
 	background-color: #e8f5f1;
 	border: 1px solid red;
 	border-radius: 8px;
-	box-shadow: 0 0 6px rgba(0, 152, 121, 0.3);
+	box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
 	font-size: 14px;
-	color: #004d40;
+	color: #3F3F3F;
 	text-align: center;
 }
 .auth__error-resend {
@@ -16,7 +16,7 @@
 	text-align: center;
 }
 .auth__resend-button {
-	background-color: #009879;
+	background-color: #3F3F3F;
 	color: white;
 	border: none;
 	padding: 8px 16px;
@@ -26,13 +26,13 @@
 	transition: all 0.3s ease;
 }
 .auth__resend-button:not(:disabled):hover {
-	background-color: #007a5e;
+	background-color: #727272;
 }
 .auth__resend-button:disabled {
 	opacity: 0.6;
 	cursor: not-allowed;
-	background-color: #ccc;
+	background-color: #B4B4B4;
 }
 .auth__resend-button:disabled:hover {
-	background-color: darkgray;
+	background-color: #919191;
 }

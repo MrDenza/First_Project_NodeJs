@@ -94,7 +94,9 @@ export const postApi = async (uri, data = {}, options = {}) => {
         responseBody = await response.text();
     }
 
-    console.log("Ответ запроса", responseBody);
+    if (import.meta.env.DEV) {
+        console.log("Ответ запроса", responseBody);
+    }
 
     if (!response.ok || (responseBody && responseBody.type === "error")) {
         let errorMessage = response.statusText || "Неизвестная ошибка";

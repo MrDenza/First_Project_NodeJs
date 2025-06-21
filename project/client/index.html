@@ -5,17 +5,28 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link rel="icon" type="image/ico" sizes="32x32" href="/favicon.ico" />
+        <link rel="stylesheet" href="style.css">
         <title>Messaria</title>
     </head>
     <body>
         <div id="root"><!--app-html--></div>
         <script>/*--preloaded-state--*/</script>
         <script type="module" src="source/main.jsx"></script>
-<!--         <noscript> -->
-<!--             <style></style> -->
-<!--             <div className="auth__noscript-warning"> -->
-<!--                 Для полной функциональности включите JavaScript -->
-<!--             </div> -->
-<!--         </noscript> -->
+        <noscript>
+            <div class="noscript-warning">
+                <h2>Требуется JavaScript</h2>
+                <p>Для работы этого сайта необходимо включить JavaScript в настройках вашего браузера.</p>
+
+                <div class="noscript-details">
+                    <h3>О технологии:</h3>
+                    <p>• Сайт использует JavaScript для основной функциональности</p>
+                    <p>• Применяются cookies исключительно для технических целей</p>
+                    <p>• Хранится только токен авторизации (без персональных данных)</p>
+                    <p>• Мы не собираем и не обрабатываем личную информацию пользователей</p>
+                </div>
+
+                <p class="noscript-help">Как включить JavaScript? → <a href="https://www.enable-javascript.com/ru/" target="_blank" rel="noopener">Инструкция</a></p>
+            </div>
+        </noscript>
     </body>
 </html>
