@@ -10,7 +10,7 @@ import {
     setAuthToken,
     clearError,
     resendVerification,
-} from "../../../redux/reducers/userAuth/userAuthSlice";
+} from "../../../redux/reducers/userData/userDataSlice";
 import { memo, useEffect } from "react";
 import { usePageTitle } from "../../../hooks/usePageTitle";
 
@@ -29,7 +29,7 @@ const metaDescription = {
 function AuthPage({ mode }) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { tempAuthToken, errAuth, isAuth, registerStatus, loginStatus, resendActStatus } = useSelector((state) => state.userAuth);
+    const { tempAuthToken, errAuth, isAuth, registerStatus, loginStatus, resendActStatus } = useSelector((state) => state.userData);
 
     usePageTitle(`${pageTitles[mode]} | ${import.meta.env.VITE_SITE_NAME || "Messaria"}`);
 

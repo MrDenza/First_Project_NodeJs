@@ -19,15 +19,19 @@ module.exports = (models) => ({
     },
 
     // Найти сессию по access токену
-    // async findByAccessToken(accessToken) {
-    //     return models.Session.findOne({
-    //         where: {
-    //             access_token: accessToken,
-    //             is_revoked: false,
-    //             expires_at: { [Op.gt]: new Date() }
-    //         }
-    //     });
-    // },
+    async findByAccessToken(accessToken) {
+        return models.Session.findOne({
+            where: {
+                access_token: accessToken,
+                is_revoked: false,
+                expires_at: { [Op.gt]: new Date() }
+            },
+            include: {
+                association: 'user',
+                attributes: ['id', 'username', 'is_admin']
+            }
+        });
+    },
 
     // Найти активную сессию по хешу refresh токена
     async findByTokenHash(refreshToken) {
@@ -40,7 +44,7 @@ module.exports = (models) => ({
             },
             include: {
                 association: 'user',
-                attributes: ['id', 'username', 'email']
+                attributes: ['id', 'username', 'email', 'is_admin']
             }
         });
     },

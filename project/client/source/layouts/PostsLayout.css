@@ -1,0 +1,8 @@
+.postslayout__container {
+	padding: 20px 20px 0 20px;
+	height: 100%;
+	width: 100%;
+	margin: 0 auto;
+	max-width: 1200px;
+	box-sizing: border-box;
+}

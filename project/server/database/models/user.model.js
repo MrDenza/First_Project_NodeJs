@@ -47,6 +47,11 @@ module.exports = (sequelize) => {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },
+        is_admin: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+            allowNull: false
+        },
         last_online: {
             type: DataTypes.DATE,
             defaultValue: null
@@ -94,6 +99,19 @@ module.exports = (sequelize) => {
             as: 'sessions',
             onDelete: 'CASCADE'
         });
+
+        User.hasMany(models.Post, {
+            foreignKey: 'author_id',
+            as: 'posts',
+            onDelete: 'CASCADE'
+        });
+
+        User.belongsToMany(models.Post, {
+            through: models.UserFavorite,
+            foreignKey: 'user_id',
+            as: 'favorite_posts',
+            onDelete: 'CASCADE'
+        });
     };
 
     // Методы экземпляра
@@ -137,4 +155,8 @@ CREATE TABLE users (
     INDEX idx_users_email (email),
     INDEX idx_users_username (username)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Пользователи системы';
+
+ALTER TABLE users
+    ADD COLUMN is_admin BOOLEAN NOT NULL DEFAULT FALSE
+        COMMENT 'Флаг администратора';
 */

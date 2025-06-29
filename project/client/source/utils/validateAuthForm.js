@@ -1,5 +1,3 @@
-"use strict"; // Строгий режим
-// ----------------------- JavaScript -----------------------
 function validate (mode, {username, email, password, login}) {
     // mode = 'register' или 'login'
     const errs = {};

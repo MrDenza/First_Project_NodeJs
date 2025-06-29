@@ -4,6 +4,7 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore } from './redux/store';
+import { HelmetProvider } from "react-helmet-async";
 
 const init100vh = () => {
 	const setHeight = () => {
@@ -23,11 +24,13 @@ if (typeof window !== 'undefined') {
 }
 
 const RootApp = () => (
+	<HelmetProvider>
 	<Provider store={store}>
 		<BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
 			<App />
 		</BrowserRouter>
 	</Provider>
+	</HelmetProvider>
 );
 
 // Рендер в зависимости от режима (Vite или SSR)

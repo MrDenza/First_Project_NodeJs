@@ -2,6 +2,7 @@ const { hash } = require('bcrypt');
 const validate = require("../../utils/validateAuthForm");
 const emailService = require('../email.service');
 const db = require('../../database/database');
+const logger = require("../../utils/logger");
 
 module.exports = {
     // Валидация данных пользователя
@@ -52,7 +53,7 @@ module.exports = {
 
         } catch (error) {
             await transaction.rollback();
-            console.error('Ошибка сервиса регистрации: ', error);
+            logger.error(error, `USER_REG_SERVICE`);
             throw error;
         }
     },

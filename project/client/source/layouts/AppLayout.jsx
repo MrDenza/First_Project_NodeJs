@@ -2,12 +2,13 @@ import AppNavbar from "../components/App/AppNavbar";
 import { Outlet } from "react-router-dom";
 import "./AppLayout.css";
 import { useDispatch, useSelector } from "react-redux";
-import { checkToken, logoutUser } from "../redux/reducers/userAuth/userAuthSlice";
+import { checkToken, logoutUser } from "../redux/reducers/userData/userDataSlice";
 import { memo, useEffect } from "react";
+import ConfirmNavigationModal from "../components/App/ConfirmNavigationModal";
 
 const AppLayout = () => {
     const dispatch = useDispatch();
-    const { isAuth, authCheckStatus } = useSelector(state => state.userAuth);
+    const { isAuth, authCheckStatus } = useSelector(state => state.userData);
 
     useEffect(() => {
         let interval;
@@ -18,7 +19,7 @@ const AppLayout = () => {
                 interval = setInterval(() => {
                     console.log('проверка');
                     dispatch(checkToken());
-                }, 10 * 1000);
+                }, 6 * 60 * 1000); // Автопроверка авторизации
             }
         };
 
@@ -45,6 +46,7 @@ const AppLayout = () => {
                 <AppNavbar isAuth={isAuth} logout={logout}/>
             </div>
             <main className="applayout__main">
+                <ConfirmNavigationModal />
                 <Outlet />
             </main>
         </div>

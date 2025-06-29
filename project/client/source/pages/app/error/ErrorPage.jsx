@@ -3,7 +3,6 @@ import "./ErrorPage.css";
 import { icon } from "../../../elements/svgIcon";
 import { usePageTitle } from "../../../hooks/usePageTitle";
 
-// Функция очистки от опасных символов
 const sanitizeText = (str) => {
     if (!str) return '';
     return String(str)
@@ -14,7 +13,6 @@ const sanitizeText = (str) => {
     .replace(/'/g, '&#x27;');
 };
 
-// SEO-оптимизированные сообщения об ошибках
 const errorMessages = {
     '400': {
         title: 'Ошибка 400 - Неверный запрос',
@@ -54,14 +52,6 @@ const ErrorPage = () => {
     return (
         <div className="error-page__box" role="alert">
             <h1 className="visually-hidden">{title}</h1>
-            <script type="application/ld+json">
-                {`{
-                  "@context": "https://schema.org",
-                  "@type": "ErrorPage",
-                  "name": "${title}",
-                  "description": "${safeCustomMessage || description}"
-                }`}
-            </script>
 
             <div className="error-page">
                 <div className="error-page__icon" aria-hidden="true">

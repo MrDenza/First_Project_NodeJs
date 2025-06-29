@@ -23,7 +23,7 @@ module.exports = (models) => ({
             where: {
                 [Op.or]: [
                     { username },
-                    { email: email.toLowerCase() }
+                    { email: email.toLowerCase() },
                 ]
             }
         });

@@ -4,12 +4,20 @@ import { resolve } from 'path'
 
 const isSSR = process.env.BUILD_TARGET === 'ssr';
 
+// Полная перезагрузка страницы вместо горячей
+const fullReloadAlways = {
+  handleHotUpdate({ server }) {
+    server.ws.send({ type: "full-reload" });
+    return [];
+  },
+};
+
 export default defineConfig({
 	ssr: {
 		noExternal: ['react-router-dom'],
 		external: ['*.png', '*.jpg', '*.svg', '*.css', '*.woff2', '*.ico'] // <-- важно
 	},
-	plugins: [react()],
+	plugins: [react()  , fullReloadAlways],
 	base: "/",
 	resolve: {
 		extensions: [".js", ".jsx", ".ts", ".tsx"],

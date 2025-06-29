@@ -1,0 +1,133 @@
+.posts-search-page {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+}
+.posts-search-page__header {
+	margin-bottom: 30px;
+}
+.posts-search-page__title {
+	text-align: center;
+	margin-bottom: 20px;
+	color: #333;
+}
+.posts-search-page__search-bar {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+.posts-search-page__search-input {
+	flex-grow: 1;
+	padding: 10px 15px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 16px;
+}
+.posts-search-page__search-button {
+	padding: 10px 20px;
+	background-color: #3F3F3F;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background 0.3s;
+	font-size: 16px;
+	white-space: nowrap;
+}
+.posts-search-page__search-button:hover {
+	background-color: #727272;
+}
+.posts-search-page__search-button:disabled {
+	background-color: #cccccc;
+	cursor: not-allowed;
+}
+.posts-search-page__results {
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+}
+.posts-search-page__result-item {
+	border: 1px solid #eee;
+	border-radius: 8px;
+	padding: 20px;
+	cursor: pointer;
+	transition: all 0.3s;
+	background-color: white;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.posts-search-page__result-item:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+	border-color: #ccc;
+}
+.posts-search-page__result-title {
+	margin-top: 0;
+	margin-bottom: 10px;
+	color: #2c3e50;
+}
+.posts-search-page__result-excerpt {
+	color: #555;
+	margin-bottom: 15px;
+	line-height: 1.5;
+}
+.posts-search-page__result-excerpt mark {
+	background-color: #fff9c4;
+	padding: 0 2px;
+}
+.posts-search-page__result-meta {
+	display: flex;
+	gap: 15px;
+	font-size: 14px;
+	color: #777;
+}
+.posts-search-page__empty {
+	text-align: center;
+	padding: 40px;
+	color: #888;
+	font-size: 18px;
+}
+.posts-search-page__error {
+	color: #e74c3c;
+	margin-bottom: 20px;
+	text-align: center;
+}
+.posts-search-page__load-more {
+	margin: 30px auto;
+	padding: 12px 25px;
+	background-color: #f8f9fa;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	cursor: pointer;
+	display: block;
+	transition: all 0.3s;
+}
+.posts-search-page__load-more:hover {
+	background-color: #e9ecef;
+}
+.posts-search-page__result-content {
+	color: #555;
+	margin-bottom: 15px;
+	line-height: 1.5;
+	font-size: 14px;
+	border-left: 3px solid #eee;
+	padding-left: 10px;
+	margin-top: 10px;
+}
+.posts-search-page__result-content mark {
+	background-color: #fff9c4;
+	padding: 0 2px;
+}
+.posts-search-page__result-fragment {
+	color: #555;
+	margin: 10px 0;
+	line-height: 1.5;
+	border-left: 3px solid #eee;
+	padding-left: 10px;
+	font-style: italic;
+}
+.posts-search-page__result-fragment mark {
+	background-color: #fff9c4;
+	padding: 0 2px;
+	font-weight: bold;
+	font-style: normal;
+}

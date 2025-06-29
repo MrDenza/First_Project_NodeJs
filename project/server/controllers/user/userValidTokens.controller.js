@@ -1,4 +1,6 @@
 const tokenValidService = require('../../services/auth/userValidTokens.service');
+const favoritesService = require("../../services/favorites/userFavorites.service");
+const logger = require("../../utils/logger");
 
 module.exports = async function handleUserValidTokens (req, res) {
 
@@ -52,6 +54,8 @@ module.exports = async function handleUserValidTokens (req, res) {
             clientInfo
         );
 
+        const userPosts = await favoritesService.getUserPosts(session.user_id);
+
         return res.status(200).json({
             success: true,
             code: 'SESSION_VALID',
@@ -62,10 +66,13 @@ module.exports = async function handleUserValidTokens (req, res) {
                 isValid: true,
                 accessToken: newAccessToken,
                 isNewToken: isNew,
+                isAdmin: session.toJSON().user.is_admin,
+                userFavoritesIdList: userPosts || [],
             }
         });
     } catch (error) {
-        console.error('Token validation error: ', error);
+        logger.error(error, "USER_TOKEN_VALID_CONTROLLER");
+
         return res.status(500).json({
             success: false,
             code: 'SERVER_ERROR',

@@ -1,4 +1,5 @@
 const db = require('../../database/database');
+const logger = require("../../utils/logger");
 
 module.exports = {
     // Проверка наличия токена активации
@@ -21,7 +22,7 @@ module.exports = {
             return { rToken };
         } catch (error) {
             await transaction.rollback();
-            console.error('Ошибка сервиса активации: ', error);
+            logger.error(error, `USER_ACTIVATION_SERVICE`);
             throw error;
         }
     }

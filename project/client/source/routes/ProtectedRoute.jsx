@@ -2,11 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import SafeNavigate from '../components/routes/SafeNavigate';
 import LoadingSpinner from "../components/common/LoadingSpinner/LoadingSpinner";
 import { useEffect } from "react";
-import { checkToken } from "../redux/reducers/userAuth/userAuthSlice";
+import { checkToken } from "../redux/reducers/userData/userDataSlice";
 
 const ProtectedRoute = ({ children }) => {
     const dispatch = useDispatch();
-    const { isAuth, accessToken, authCheckStatus } = useSelector(state => state.userAuth);
+    const { isAuth, accessToken, authCheckStatus } = useSelector(state => state.userData);
 
     useEffect(() => {
         if (accessToken) {

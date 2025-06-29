@@ -1,4 +1,5 @@
 const resendActivationService = require('../../services/auth/userResendAct.service');
+const logger = require("../../utils/logger");
 
 module.exports = async function handleResendActivation(req, res) {
     const { tempAuthToken } = req.body;
@@ -61,7 +62,8 @@ module.exports = async function handleResendActivation(req, res) {
         });
 
     } catch (error) {
-        console.log('Resend activation failed: ', error);
+        logger.error(error, "USER_RESEND_ACTIVATION_CONTROLLER");
+
         return res.status(500).json({
             success: false,
             code: 'SERVER_ERROR',

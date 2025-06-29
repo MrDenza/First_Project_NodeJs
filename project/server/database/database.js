@@ -2,6 +2,7 @@ const { Sequelize } = require('sequelize');
 const mysql2 = require('mysql2');
 const { MYSQL } = require("../config/mysql.config");
 const logModelAssociations = require("./logModelAssociations");
+const logger = require("../utils/logger");
 
 const sequelize = new Sequelize(
     MYSQL.database,
@@ -51,19 +52,19 @@ const { models, repositories } = require('./models')(sequelize);
 logModelAssociations(models, { detailed: true, colors: true });
 
 sequelize.addHook('afterConnect', () => {
-    console.log('Установлено новое соединение с БД');
+    logger.info(`Установлено новое соединение с БД`);
 });
 sequelize.addHook('beforeDisconnect', () => {
-    console.log('Соединение с БД будет закрыто');
+    logger.info(`Соединение с БД будет закрыто`);
 });
 
 async function authenticate() {
     try {
         await sequelize.authenticate();
         //await sequelize.sync({ alter: true }); // Синхронизация моделей и структуры таблиц БД
-        console.log('Подключение к БД успешно!');
+        logger.info(`Подключение к БД успешно!`);
     } catch (error) {
-        console.error('Ошибка подключения к БД: ', error);
+        logger.error(error, `Ошибка подключения к БД`);
         throw error;
     }
 }

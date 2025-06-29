@@ -1,5 +1,7 @@
 const authService = require('../../services/auth/userLogin.service');
 const { REFRESH_EXP_TOKEN } = require("../../config/server.config");
+const favoritesService = require("../../services/favorites/userFavorites.service");
+const logger = require("../../utils/logger");
 
 module.exports = async function handleLogin(req, res) {
     const { login, password } = req.body;
@@ -72,11 +74,13 @@ module.exports = async function handleLogin(req, res) {
             });
         }
 
+        const userPosts = await favoritesService.getUserPosts(user.id);
+
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'strict',
-            maxAge: REFRESH_EXP_TOKEN
+            maxAge: REFRESH_EXP_TOKEN * 1000
         });
 
         // Успешная авторизация
@@ -89,11 +93,14 @@ module.exports = async function handleLogin(req, res) {
                 username: user.username,
                 accessToken,
                 isVerified: user.is_active,
+                isAdmin: user.is_admin,
+                userFavoritesIdList: userPosts || [],
             }
         });
 
     } catch (error) {
-        console.error('Login error: ', error);
+        logger.error(error, "USER_LOGIN_CONTROLLER");
+
         return res.status(500).json({
             success: false,
             code: 'SERVER_ERROR',

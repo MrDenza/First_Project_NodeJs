@@ -13,21 +13,17 @@ function generateErrList(err) {
     if (typeof err === "string") {
         return <li key={err} className="auth__error">{err}</li>;
     }
-
     if (React.isValidElement(err)) {
         return <li className="auth__error">{err}</li>;
     }
-
     if (Array.isArray(err)) {
         return err.map((msg) => generateErrList(msg));
     }
-
     if (err && typeof err === "object") {
         return Object.entries(err).flatMap(([_, value]) =>
             generateErrList(value)
         );
     }
-
     return <li className="auth__error">{String(err)}</li>;
 }
 

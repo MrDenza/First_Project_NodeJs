@@ -18,19 +18,16 @@
 	text-align: center;
 	line-height: 1.6;
 }
-
 .noscript-warning h2 {
 	font-size: 28px;
 	margin-bottom: 20px;
 	color: #fff;
 }
-
 .noscript-warning p {
 	font-size: 18px;
 	max-width: 600px;
 	margin-bottom: 25px;
 }
-
 .noscript-details {
 	background: rgba(255, 255, 255, 0.1);
 	padding: 20px;
@@ -39,30 +36,25 @@
 	max-width: 600px;
 	text-align: left;
 }
-
 .noscript-details h3 {
 	font-size: 20px;
 	margin-top: 0;
 	margin-bottom: 15px;
 	color: #fff;
 }
-
 .noscript-details p {
 	font-size: 16px;
 	margin-bottom: 10px;
 }
-
 .noscript-help {
 	font-size: 16px;
 	margin-top: 20px;
 }
-
 .noscript-help a {
 	color: #4dabf7;
 	text-decoration: none;
 	font-weight: bold;
 }
-
 .noscript-help a:hover {
 	text-decoration: underline;
 }

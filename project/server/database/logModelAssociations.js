@@ -8,19 +8,6 @@ function getAssociationType(association) {
     }
 }
 
-function cleanAssociationOptions(options) {
-    if (!options) return {};
-    return {
-        foreignKey: options.foreignKey,
-        as: options.as,
-        onDelete: options.onDelete,
-        onUpdate: options.onUpdate,
-        hooks: !!options.hooks,
-        constraints: options.constraints,
-        scope: options.scope ? 'установлен' : undefined
-    };
-}
-
 module.exports = function logModelAssociations(models, options = {}) {
     const { detailed = false, colors = true } = options;
 
@@ -45,9 +32,7 @@ module.exports = function logModelAssociations(models, options = {}) {
                 console.log(`  ${colorAssoc}${assocName}${colorReset}: ${colorType}${assocType}${colorReset} → ${colorModel}${targetModel}${colorReset}`);
 
                 if (detailed) {
-                    //const cleanedOptions = cleanAssociationOptions(association.options);
                     console.log(`    Внешний ключ: ${colorOption}${association.foreignKey || 'по умолчанию'}${colorReset}`);
-                    //console.log('    Опции:', cleanedOptions);
                 }
             });
         }

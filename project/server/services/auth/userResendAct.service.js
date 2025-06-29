@@ -10,7 +10,9 @@ module.exports = {
     // Получение пользователя для активации
     async getUserForActivation(userId) {
         const user = await db.repositories.User.findById(userId);
-        if (!user) throw new Error('Пользователь не найден.');
+        if (!user) {
+            throw new Error('Пользователь не найден.')
+        };
         return user;
     },
 

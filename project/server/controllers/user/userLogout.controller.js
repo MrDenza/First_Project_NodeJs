@@ -1,4 +1,5 @@
 const logoutService = require('../../services/auth/userLogout.service');
+const logger = require("../../utils/logger");
 
 module.exports = async function handleUserLogout(req, res) {
     const refreshToken = req.cookies.refreshToken || null;
@@ -16,25 +17,25 @@ module.exports = async function handleUserLogout(req, res) {
         });
 
         // Если нет refresh токена - просто подтверждаем выход
-        if (!refreshToken) {
-            return res.status(200).json({
-                success: true,
-                code: 'LOGOUT_SUCCESS',
-                status: 200,
-                message: 'Сеанс завершен'
-            });
-        }
+        // if (!refreshToken) {
+        //     return res.status(200).json({
+        //         success: true,
+        //         code: 'LOGOUT_SUCCESS',
+        //         status: 200,
+        //         message: 'Сеанс завершен'
+        //     });
+        // }
 
         // Валидация refresh токена
-        const isValidRefToken = await logoutService.validRefreshToken(refreshToken);
-        if (!isValidRefToken) {
-            return res.status(200).json({
-                success: true,
-                code: 'LOGOUT_SUCCESS',
-                status: 200,
-                message: 'Сеанс завершен (токен недействителен).',
-            });
-        }
+        // const isValidRefToken = await logoutService.validRefreshToken(refreshToken);
+        // if (!isValidRefToken) {
+        //     return res.status(200).json({
+        //         success: true,
+        //         code: 'LOGOUT_SUCCESS',
+        //         status: 200,
+        //         message: 'Сеанс завершен (токен недействителен).',
+        //     });
+        // }
 
         // Удаляем сессию пользователя
         const isDeleteSession = await logoutService.logoutUser(refreshToken, accessToken);
@@ -50,7 +51,8 @@ module.exports = async function handleUserLogout(req, res) {
         });
 
     } catch (error) {
-        console.log('Logout failed: ', error);
+        logger.error(error, "USER_LOGOUT_CONTROLLER");
+
         return res.status(500).json({
             success: false,
             code: 'SERVER_ERROR',

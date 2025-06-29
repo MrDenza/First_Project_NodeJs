@@ -9,7 +9,7 @@ module.exports = {
             jwt.sign(
                 info,
                 TOKEN_SECRET,
-                { expiresIn: ACCESS_EXP_TOKEN },
+                { expiresIn: ACCESS_EXP_TOKEN / 1000 },
                 (err, token) => {
                     if (err) return reject(err);
                     resolve(token);
@@ -25,7 +25,7 @@ module.exports = {
             jwt.sign(
                 { type: 'refresh' },
                 TOKEN_SECRET,
-                { expiresIn: REFRESH_EXP_TOKEN },
+                { expiresIn: REFRESH_EXP_TOKEN / 1000 },
                 (err, token) => {
                     if (err) {
                         return reject(err);
@@ -52,13 +52,13 @@ module.exports = {
     },
 
     // Извлечение payload без проверки подписи
-    decodeToken(token) {
-        try {
-            return jwt.decode(token);
-        } catch (e) {
-            return null;
-        }
-    },
+    // decodeToken(token) {
+    //     try {
+    //         return jwt.decode(token);
+    //     } catch (e) {
+    //         return null;
+    //     }
+    // },
 
     // Просрочка валидного токена
     async isTokenFreshAsync(token, thresholdPercentage = 5) {

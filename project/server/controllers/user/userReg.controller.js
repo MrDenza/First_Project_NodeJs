@@ -1,4 +1,5 @@
 const registrationService = require('../../services/auth/userReg.service');
+const logger = require("../../utils/logger");
 
 module.exports = async function handleUserRegistration(req, res) {
     const { username, email, password } = req.body;
@@ -55,7 +56,8 @@ module.exports = async function handleUserRegistration(req, res) {
         });
 
     } catch (error) {
-        console.error('Registration error: ', error);
+        logger.error(error, "USER_REG_CONTROLLER");
+
         return res.status(500).json({
             success: false,
             code: 'SERVER_ERROR',

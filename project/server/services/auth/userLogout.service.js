@@ -1,5 +1,6 @@
 const db = require('../../database/database');
 const tokenService = require("../token.service");
+const logger = require("../../utils/logger");
 
 module.exports = {
     // Проверяем подпись refresh токена
@@ -16,11 +17,11 @@ module.exports = {
             if (revoked) return true;
 
             // Если ошибка или refresh токен отсутствует, отзываем по access
-            console.error('Выход пользователя. Не найден refresh токен: ', refreshToken);
+            logger.error(`USER_LOGOUT_SERVICE | Выход пользователя. Не найден refresh токен: ${refreshToken}`);
             const session = await db.repositories.Session.revokeByAccessToken(accessToken);
             return !(!session && !revoked);
         } catch (error) {
-            console.error('Ошибка удаления сессии пользователя:', error);
+            logger.error(error, `USER_LOGOUT_SERVICE | Ошибка удаления сессии пользователя`);
             return false;
         }
     },

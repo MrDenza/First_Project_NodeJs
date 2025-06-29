@@ -1,20 +1,14 @@
 import { useEffect, useState } from "react";
 import "./UnverifiedNotice.css";
 
-export default function UnverifiedNotice({
-    onResend,
-    isLoading,
-    isSend,
-    hasToken,
-    error
-}) {
+export default function UnverifiedNotice({ onResend, isLoading, isSend, hasToken, error }) {
     const [cooldown, setCooldown] = useState(0);
 
     useEffect(() => {
         if (isSend) {
             setCooldown(60);
             const timer = setInterval(() => {
-                setCooldown(prev => {
+                setCooldown((prev) => {
                     if (prev <= 1) {
                         clearInterval(timer);
                         return 0;
@@ -30,36 +24,32 @@ export default function UnverifiedNotice({
         if (!hasToken) {
             return {
                 disabled: true,
-                text: 'Требуется авторизация',
-                hint: 'Время сессии истекло. Авторизуйтесь снова.'
+                text: "Требуется авторизация",
+                hint: "Время сессии истекло. Авторизуйтесь снова.",
             };
         }
-
         if (isLoading) {
             return {
                 disabled: true,
-                text: 'Отправка...'
+                text: "Отправка...",
             };
         }
-
         if (cooldown > 0) {
             return {
                 disabled: true,
-                text: `Повтор через ${cooldown} сек`
+                text: `Повтор через ${cooldown} сек`,
             };
         }
-
         if (error) {
             return {
                 disabled: false,
-                text: 'Повторить отправку',
-                hint: error
+                text: "Повторить отправку",
+                hint: error,
             };
         }
-
         return {
             disabled: false,
-            text: 'Отправить письмо повторно'
+            text: "Отправить письмо повторно",
         };
     };
 

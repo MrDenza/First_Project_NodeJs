@@ -1,5 +1,6 @@
 const activationService = require('../../services/auth/userActivation.service');
 const { REFRESH_EXP_TOKEN } = require("../../config/server.config");
+const logger = require("../../utils/logger");
 
 module.exports = async function handleActivation (req, res) {
     const { token } = req.query;
@@ -17,7 +18,6 @@ module.exports = async function handleActivation (req, res) {
                 status: 400,
                 message: "Отсутствуют данные для активации аккаунта.",
             }
-            //return res.status(400).json(errorBody);
             return errorRes(errorBody.status, errorBody.message);
         }
 
@@ -30,7 +30,6 @@ module.exports = async function handleActivation (req, res) {
                 status: 400,
                 message: 'Неверная ссылка активации. Запросите новую ссылку.'
             }
-            //return res.status(400).json(errorBody);
             return errorRes(errorBody.status, errorBody.message);
         }
 
@@ -42,7 +41,6 @@ module.exports = async function handleActivation (req, res) {
                 status: 410,
                 message: 'Срок действия ссылка активации истёк. Запросите новую ссылку.'
             }
-            //return res.status(410).json(errorBody);
             return errorRes(errorBody.status, errorBody.message);
         }
 
@@ -54,7 +52,6 @@ module.exports = async function handleActivation (req, res) {
                 status: 409,
                 message: 'Аккаунт уже активирован.'
             }
-            //return res.status(409).json(errorBody);
             return errorRes(errorBody.status, errorBody.message);
         }
 
@@ -69,7 +66,6 @@ module.exports = async function handleActivation (req, res) {
                 status: 500,
                 message: 'Не удалось авторизоваться. Попробуйте позже.',
             }
-            //return res.status(500).json(errorBody);
             return errorRes(errorBody.status, errorBody.message);
         }
 
@@ -81,17 +77,18 @@ module.exports = async function handleActivation (req, res) {
         });
 
         // Редирект домой
-        res.redirect(`/feed`);
+        res.redirect(`/`);
 
     } catch (error) {
-        console.error('Activation error: ', error);
+        logger.error(error, "USER_ACTIVATED_CONTROLLER");
+
         const errorBody = {
             success: false,
             code: 'SERVER_ERROR',
             status: 500,
             message: 'Серверная ошибка. Попробуйте позже.'
         }
-        //return res.status(500).json(errorBody);
+
         return errorRes(errorBody.status, errorBody.message);
     }
 };

@@ -2,6 +2,7 @@ const validate = require("../../utils/validateAuthForm");
 const { compare } = require("bcrypt");
 const db = require('../../database/database');
 const emailService = require("../email.service");
+const logger = require("../../utils/logger");
 
 module.exports = {
     // Валидация данных пользователя
@@ -43,7 +44,7 @@ module.exports = {
             };
         } catch (error) {
             await transaction.rollback();
-            console.error('Ошибка авторизации - токен активации: ', error);
+            logger.error(error, `USER_LOGIN_SERVICE`);
             throw error;
         }
     },

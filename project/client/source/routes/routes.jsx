@@ -2,15 +2,19 @@ import PageAuth from "../pages/app/auth/AuthPage";
 import SafeNavigate from "../components/routes/SafeNavigate";
 import { Outlet } from "react-router-dom";
 import ErrorPage from "../pages/app/error/ErrorPage";
-import { refreshToken } from "../redux/reducers/userAuth/userAuthSlice";
+import { refreshToken } from "../redux/reducers/userData/userDataSlice";
 import AppLayout from "../layouts/AppLayout";
-import NewsListPage from "../pages/app/posts/NewsListPage";
-import NewsItemPage from "../pages/app/posts/NewsItemPage";
+import PostsListPage from "../pages/app/posts/PostsListPage";
 import FeedPage from "../pages/app/feed/FeedPage";
-import NewsLayout from "../layouts/NewsLayout";
+import PostsLayout from "../layouts/PostsLayout";
 import UserLayout from "../layouts/UserLayout";
-import UserSettingsPage from "../pages/app/user/UserSettingsPage";
 import AuthLayout from "../layouts/AuthLayout";
+import PostsItemPage from "../pages/app/posts/PostsItemPage";
+import AuthLogout from "../pages/app/auth/AuthLogout";
+import DevelopedPage from "../pages/app/developed/DevelopedPage";
+import { fetchFeedPosts, fetchPost } from "../redux/reducers/postsData/postsDataSlice";
+import PostsSearchPage from "../pages/app/posts/PostsSearchPage";
+import HomePage from "../pages/app/home/HomePage";
 
 export const routeConfig = [
     {
@@ -25,7 +29,7 @@ export const routeConfig = [
                     // Home
                     {
                         index: true,
-                        element: <span>home</span>,
+                        element: <HomePage />,
                     },
                     // Auth
                     {
@@ -47,63 +51,79 @@ export const routeConfig = [
                                 path: "verified",
                                 element: <PageAuth mode="verified" />,
                             },
+                            // Logout
+                            {
+                                path: "logout",
+                                element: <AuthLogout />,
+                            },
                             // Ошибка пути
                             {
                                 path: "*",
-                                element: <SafeNavigate to="/auth/sign-in" replace />
-                            }
+                                element: (
+                                    <SafeNavigate
+                                        to="/auth/sign-in"
+                                        replace
+                                    />
+                                ),
+                            },
                         ],
                     },
                     // Feed
                     {
                         path: "feed",
                         element: <FeedPage />,
+                        ssrLoadData: () => fetchFeedPosts({ page: 1 }), // Thunk
                     },
-                    // News
+                    // Posts
                     {
-                        path: "news",
-                        element: <NewsLayout />,
+                        path: "posts",
+                        element: <PostsLayout />,
                         children: [
                             // Posts - search
                             {
                                 path: "search",
-                                element: <NewsListPage mode="search" />,
+                                element: <PostsSearchPage />,
                             },
                             // Posts - favorites
                             {
                                 path: "favorites",
-                                element: <NewsListPage mode="favorites" />,
+                                element: <PostsListPage />,
                                 private: true,
                                 privateRedirectTo: "/auth/sign-in",
                             },
 
                             // Posts - view
                             {
-                                path: "view/:id(\\d+)",
-                                element: <NewsItemPage mode="view" />,
+                                path: "view/:id",
+                                element: <PostsItemPage mode="view" />,
+                                ssrLoadData: (params) => fetchPost(params.id), // Thunk
                             },
                             // Posts - create
                             {
                                 path: "create",
-                                element: <NewsItemPage mode="create" />,
+                                element: <PostsItemPage mode="create" />,
                                 private: true,
                                 privateRedirectTo: "/auth/sign-in",
                             },
                             // Posts - edit
                             {
-                                path: "edit/:id(\\d+)",
-                                element: <NewsItemPage mode="edit" />,
+                                path: "edit/:id",
+                                element: <PostsItemPage mode="edit" />,
+                                ssrLoadData: (params) => fetchPost(params.id), // Thunk
                                 private: true,
                                 privateRedirectTo: "/auth/sign-in",
                             },
-
                             // Ошибка пути
                             {
                                 path: "*",
-                                element: <SafeNavigate to="/news/search" replace />,
+                                element: (
+                                    <SafeNavigate
+                                        to="/posts/search"
+                                        replace
+                                    />
+                                ),
                             },
-
-                        ]
+                        ],
                     },
                     // User
                     {
@@ -115,14 +135,19 @@ export const routeConfig = [
                             // Settings
                             {
                                 path: "settings",
-                                element: <UserSettingsPage />,
+                                element: <DevelopedPage />,
                             },
                             // Ошибка пути
                             {
                                 path: "*",
-                                element: <SafeNavigate to="/user/settings" replace />,
+                                element: (
+                                    <SafeNavigate
+                                        to="/user/settings"
+                                        replace
+                                    />
+                                ),
                             },
-                        ]
+                        ],
                     },
                     // Error
                     {
@@ -134,8 +159,13 @@ export const routeConfig = [
             // Ошибка пути
             {
                 path: "*",
-                element: <SafeNavigate to="/error" replace />,
-            }
+                element: (
+                    <SafeNavigate
+                        to="/error"
+                        replace
+                    />
+                ),
+            },
         ],
     },
 ];
