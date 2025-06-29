@@ -69,7 +69,7 @@ const PostsItemPage = ({ mode: initialMode }) => {
 
     // Загрузка поста при монтировании
     useEffect(() => {
-        if (!isCreateMode && id && id !== post?.meta?.id) {
+        if (!isCreateMode && id && id !== String(post?.meta?.id)) {
             dispatch(clearPostState());
             dispatch(fetchPost(id));
         }

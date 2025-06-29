@@ -20,43 +20,12 @@ const pageTitles = {
     verified: "Подтверждение email"
 };
 
-const metaDescription = {
-    login: "Войдите в свой аккаунт для доступа к персональным данным",
-    register: "Зарегистрируйте новый аккаунт для получения полного доступа",
-    verified: "Подтвердите ваш email для завершения регистрации"
-};
-
 function AuthPage({ mode }) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { tempAuthToken, errAuth, isAuth, registerStatus, loginStatus, resendActStatus } = useSelector((state) => state.userData);
 
     usePageTitle(`${pageTitles[mode]} | ${import.meta.env.VITE_SITE_NAME || "Messaria"}`);
-
-    // SEO
-    useEffect(() => {
-        const descriptionMeta = document.querySelector('meta[name="description"]');
-        if (descriptionMeta) {
-            descriptionMeta.content = metaDescription[mode];
-        } else {
-            const meta = document.createElement('meta');
-            meta.name = "description";
-            meta.content = metaDescription[mode];
-            document.head.appendChild(meta);
-        }
-
-        // Канонический URL
-        const canonicalUrl = `${window.location.origin}/auth/${mode === 'login' ? 'sign-in' : mode === 'register' ? 'sign-up' : 'verified'}`;
-        let canonicalLink = document.querySelector('link[rel="canonical"]');
-        if (!canonicalLink) {
-            canonicalLink = document.createElement('link');
-            canonicalLink.rel = "canonical";
-            document.head.appendChild(canonicalLink);
-        }
-        canonicalLink.href = canonicalUrl;
-
-        dispatch(clearError(true));
-    }, [mode, dispatch]);
 
     // Обработка авторизации и активации
     useEffect(() => {
@@ -107,27 +76,13 @@ function AuthPage({ mode }) {
         if (mode === "verified" && !token) navigate("/auth/sign-in");
     }, [mode, dispatch, navigate]);
 
-    const getSchemaMarkup = () => {
-        return {
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": document.title,
-            "description": document.querySelector('meta[name="description"]')?.content,
-            "url": window.location.href
-        };
-    };
-
     return (
         <>
-            <script type="application/ld+json">
-                {JSON.stringify(getSchemaMarkup())}
-            </script>
-
-            <main className="auth__container" itemScope itemType="https://schema.org/WebPage">
+            <main className="auth__container">
                 <h1 className="visually-hidden">{document.title}</h1>
 
                 {(mode === "register" || mode === "login") && (
-                    <section itemScope itemType="https://schema.org/Form">
+                    <section>
                         <AuthForm
                             mode={mode}
                             onSubmit={handleSubmit}
@@ -138,7 +93,7 @@ function AuthPage({ mode }) {
                 )}
 
                 {mode === "verified" && (
-                    <section itemScope itemType="https://schema.org/ConfirmAction">
+                    <section>
                         <UnverifiedNotice
                             onResend={handleResend}
                             isLoading={resendActStatus === "pending"}

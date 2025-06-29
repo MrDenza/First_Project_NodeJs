@@ -17,7 +17,6 @@ const AppLayout = () => {
         const startInterval = () => {
             if (isMounted && isAuth && authCheckStatus !== 'logout') {
                 interval = setInterval(() => {
-                    console.log('проверка');
                     dispatch(checkToken());
                 }, 6 * 60 * 1000); // Автопроверка авторизации
             }

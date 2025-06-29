@@ -5,7 +5,7 @@ const http = require("http");
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
 const { STATIC_FILES_DIR, STATIC_UPLOAD_DIR } = require("./config/paths.config");
-const { PORT } = require("./config/server.config");
+const PORT = process.env.PORT || require("./config/server.config").PORT;
 const { initEmailService } = require('./services/email.service');
 const errorHandler = require('./middlewares/errorHandler.middleware');
 const { authenticate } = require("./database/database");

@@ -3,7 +3,7 @@ const path = require("path");
 const ROOT_DIR = path.resolve(__dirname, "../../");
 const CLIENT_DIR = path.join(ROOT_DIR, "client");
 const PUBLIC_DIR = path.join(CLIENT_DIR, "public");
-const UPLOAD_DIR = path.join(ROOT_DIR, "upload");
+const UPLOAD_DIR = path.join(ROOT_DIR, "uploads");
 
 module.exports = {
     ROOT_DIR,

@@ -95,7 +95,7 @@ const initialState = {
     userFavorites: [], // избранные посты пользователя
     isAuth: false, // если пользователь успешно авторизован и активирован
     isAdmin: false,
-    authCheckStatus: "idle", // состояние автоматической авторизации 'idle' | 'pending' | 'succeeded' | 'failed'
+    authCheckStatus: "idle", // состояние автоматической авторизации 'idle' | 'pending' | 'succeeded' | 'failed' | 'logout'
     errAuth: null, // ошибки авторизации
     errFav: null, // ошибки списка избранных
     favStatus: "idle", // состояние запроса списка избранных: 'idle' | 'loading' | 'succeeded' | 'error'
@@ -242,6 +242,7 @@ export const userDataSlice = createSlice({
             .addCase(logoutUser.fulfilled, (state) => {
                 Object.assign(state, initialState);
                 state.loginStatus = "logout";
+                state.authCheckStatus = "logout";
             })
             .addCase(logoutUser.rejected, (state, action) => {
                 const bodyError = action.payload.data?.errors || action.payload?.message;

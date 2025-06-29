@@ -9,3 +9,4 @@ users.json
 .env
 .env.*
 **/upload
+**/file_explorer.sql

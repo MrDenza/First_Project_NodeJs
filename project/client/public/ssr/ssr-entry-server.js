@@ -268,7 +268,7 @@ const initialState$2 = {
   // если пользователь успешно авторизован и активирован
   isAdmin: false,
   authCheckStatus: "idle",
-  // состояние автоматической авторизации 'idle' | 'pending' | 'succeeded' | 'failed'
+  // состояние автоматической авторизации 'idle' | 'pending' | 'succeeded' | 'failed' | 'logout'
   errAuth: null,
   // ошибки авторизации
   errFav: null,
@@ -404,6 +404,7 @@ const userDataSlice = toolkit.createSlice({
     }).addCase(logoutUser.fulfilled, (state) => {
       Object.assign(state, initialState$2);
       state.loginStatus = "logout";
+      state.authCheckStatus = "logout";
     }).addCase(logoutUser.rejected, (state, action) => {
       var _a, _b;
       const bodyError = ((_a = action.payload.data) == null ? void 0 : _a.errors) || ((_b = action.payload) == null ? void 0 : _b.message);
@@ -1127,36 +1128,11 @@ const pageTitles = {
   register: "Регистрация",
   verified: "Подтверждение email"
 };
-const metaDescription = {
-  login: "Войдите в свой аккаунт для доступа к персональным данным",
-  register: "Зарегистрируйте новый аккаунт для получения полного доступа",
-  verified: "Подтвердите ваш email для завершения регистрации"
-};
 function AuthPage({ mode }) {
   const navigate = require$$2.useNavigate();
   const dispatch = reactRedux.useDispatch();
   const { tempAuthToken, errAuth, isAuth, registerStatus, loginStatus, resendActStatus } = reactRedux.useSelector((state) => state.userData);
   usePageTitle(`${pageTitles[mode]} | ${"Messaria"}`);
-  React.useEffect(() => {
-    const descriptionMeta = document.querySelector('meta[name="description"]');
-    if (descriptionMeta) {
-      descriptionMeta.content = metaDescription[mode];
-    } else {
-      const meta = document.createElement("meta");
-      meta.name = "description";
-      meta.content = metaDescription[mode];
-      document.head.appendChild(meta);
-    }
-    const canonicalUrl = `${window.location.origin}/auth/${mode === "login" ? "sign-in" : mode === "register" ? "sign-up" : "verified"}`;
-    let canonicalLink = document.querySelector('link[rel="canonical"]');
-    if (!canonicalLink) {
-      canonicalLink = document.createElement("link");
-      canonicalLink.rel = "canonical";
-      document.head.appendChild(canonicalLink);
-    }
-    canonicalLink.href = canonicalUrl;
-    dispatch(clearError(true));
-  }, [mode, dispatch]);
   React.useEffect(() => {
     if (isAuth) {
       navigate("/feed");
@@ -1199,54 +1175,41 @@ function AuthPage({ mode }) {
     if (token) dispatch(setAuthToken(token));
     if (mode === "verified" && !token) navigate("/auth/sign-in");
   }, [mode, dispatch, navigate]);
-  const getSchemaMarkup = () => {
-    var _a;
-    return {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": document.title,
-      "description": (_a = document.querySelector('meta[name="description"]')) == null ? void 0 : _a.content,
-      "url": window.location.href
-    };
-  };
-  return /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntime.jsx("script", { type: "application/ld+json", children: JSON.stringify(getSchemaMarkup()) }),
-    /* @__PURE__ */ jsxRuntime.jsxs("main", { className: "auth__container", itemScope: true, itemType: "https://schema.org/WebPage", children: [
-      /* @__PURE__ */ jsxRuntime.jsx("h1", { className: "visually-hidden", children: document.title }),
-      (mode === "register" || mode === "login") && /* @__PURE__ */ jsxRuntime.jsx("section", { itemScope: true, itemType: "https://schema.org/Form", children: /* @__PURE__ */ jsxRuntime.jsx(
-        AuthForm$1,
-        {
-          mode,
-          onSubmit: handleSubmit,
-          validator: validate,
-          externalError: errAuth ? errAuth : ""
-        }
-      ) }),
-      mode === "verified" && /* @__PURE__ */ jsxRuntime.jsx("section", { itemScope: true, itemType: "https://schema.org/ConfirmAction", children: /* @__PURE__ */ jsxRuntime.jsx(
-        UnverifiedNotice,
-        {
-          onResend: handleResend,
-          isLoading: resendActStatus === "pending",
-          isSend: resendActStatus === "shipped",
-          hasToken: !!tempAuthToken,
-          error: errAuth
-        }
-      ) }),
-      /* @__PURE__ */ jsxRuntime.jsxs(
-        "button",
-        {
-          className: "auth__button",
-          onClick: () => handleSwitchMode(),
-          "aria-label": mode === "register" ? "Перейти к странице входа" : mode === "login" ? "Перейти к странице регистрации" : "Перейти к странице авторизации",
-          children: [
-            mode === "register" && "Уже есть аккаунт? Войти",
-            mode === "login" && "Нет аккаунта? Зарегистрироваться",
-            mode === "verified" && "Подтвердил почту? Авторизация"
-          ]
-        }
-      )
-    ] })
-  ] });
+  return /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: /* @__PURE__ */ jsxRuntime.jsxs("main", { className: "auth__container", children: [
+    /* @__PURE__ */ jsxRuntime.jsx("h1", { className: "visually-hidden", children: document.title }),
+    (mode === "register" || mode === "login") && /* @__PURE__ */ jsxRuntime.jsx("section", { children: /* @__PURE__ */ jsxRuntime.jsx(
+      AuthForm$1,
+      {
+        mode,
+        onSubmit: handleSubmit,
+        validator: validate,
+        externalError: errAuth ? errAuth : ""
+      }
+    ) }),
+    mode === "verified" && /* @__PURE__ */ jsxRuntime.jsx("section", { children: /* @__PURE__ */ jsxRuntime.jsx(
+      UnverifiedNotice,
+      {
+        onResend: handleResend,
+        isLoading: resendActStatus === "pending",
+        isSend: resendActStatus === "shipped",
+        hasToken: !!tempAuthToken,
+        error: errAuth
+      }
+    ) }),
+    /* @__PURE__ */ jsxRuntime.jsxs(
+      "button",
+      {
+        className: "auth__button",
+        onClick: () => handleSwitchMode(),
+        "aria-label": mode === "register" ? "Перейти к странице входа" : mode === "login" ? "Перейти к странице регистрации" : "Перейти к странице авторизации",
+        children: [
+          mode === "register" && "Уже есть аккаунт? Войти",
+          mode === "login" && "Нет аккаунта? Зарегистрироваться",
+          mode === "verified" && "Подтвердил почту? Авторизация"
+        ]
+      }
+    )
+  ] }) });
 }
 const PageAuth = React.memo(AuthPage);
 const icon = {
@@ -1695,7 +1658,6 @@ const AppLayout = () => {
     const startInterval = () => {
       if (isMounted && isAuth && authCheckStatus !== "logout") {
         interval = setInterval(() => {
-          console.log("проверка");
           dispatch(checkToken());
         }, 6 * 60 * 1e3);
       }
@@ -3799,7 +3761,7 @@ const PostsItemPage = ({ mode: initialMode }) => {
   }, [post, isClearing]);
   React.useEffect(() => {
     var _a2;
-    if (!isCreateMode && id && id !== ((_a2 = post == null ? void 0 : post.meta) == null ? void 0 : _a2.id)) {
+    if (!isCreateMode && id && id !== String((_a2 = post == null ? void 0 : post.meta) == null ? void 0 : _a2.id)) {
       dispatch(clearPostState());
       dispatch(fetchPost(id));
     }
