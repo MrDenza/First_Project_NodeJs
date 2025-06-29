@@ -1,4 +1,4 @@
-import { c as createAsyncThunk, a as createSlice, b as configureStore, r as reactExports, j as jsxRuntimeExports, R as React3, u as useLocation, d as useNavigate, e as useDispatch, f as useSelector, g as useSearchParams, L as Link, O as Outlet, M as MdEdit, h as RiDeleteBin7Fill, F as FaBookmark, i as FaPlus, k as FaT, l as LuHeading, m as FaRegImage, n as MdVerticalAlignTop, o as MdVerticalAlignBottom, p as FaBold, q as FaItalic, s as FaUnderline, t as FaStrikethrough, v as FaAlignLeft, w as FaAlignCenter, x as FaAlignRight, y as FaAlignJustify, z as MdOutlineSubtitles, A as MdOutlineSubtitlesOff, B as RxBorderAll, C as RxBorderStyle, D as BsBorderWidth, E as BiBorderRadius, G as GiResize, H as FaGripLines, I as IoSettings, J as Helmet, K as IoEyeSharp, N as IoSave, P as FaRegBookmark, Q as useParams, S as Navigate, T as Routes, U as Route, V as clientExports, W as HelmetProvider, X as Provider_default, Y as BrowserRouter } from "./script-n-modules.js";
+import { c as createAsyncThunk, a as createSlice, b as configureStore, r as reactExports, j as jsxRuntimeExports, R as React, u as useLocation, d as useNavigate, e as useDispatch, f as useSelector, g as useSearchParams, L as Link, O as Outlet, H as Helmet, M as MdEdit, h as RiDeleteBin7Fill, F as FaBookmark, i as FaPlus, k as FaT, l as LuHeading, m as FaRegImage, n as MdVerticalAlignTop, o as MdVerticalAlignBottom, p as FaBold, q as FaItalic, s as FaUnderline, t as FaStrikethrough, v as FaAlignLeft, w as FaAlignCenter, x as FaAlignRight, y as FaAlignJustify, z as MdOutlineSubtitles, A as MdOutlineSubtitlesOff, B as RxBorderAll, C as RxBorderStyle, D as BsBorderWidth, E as BiBorderRadius, G as GiResize, I as FaGripLines, J as IoSettings, K as IoEyeSharp, N as IoSave, P as FaRegBookmark, Q as useParams, S as Navigate, T as Routes, U as Route, V as clientExports, W as HelmetProvider, X as Provider_default, Y as BrowserRouter } from "./script-n-modules.js";
 (function polyfill() {
   const relList = document.createElement("link").relList;
   if (relList && relList.supports && relList.supports("modulepreload")) {
@@ -869,7 +869,7 @@ function generateErrList(err) {
   if (typeof err === "string") {
     return /* @__PURE__ */ jsxRuntimeExports.jsx("li", { className: "auth__error", children: err }, err);
   }
-  if (React3.isValidElement(err)) {
+  if (React.isValidElement(err)) {
     return /* @__PURE__ */ jsxRuntimeExports.jsx("li", { className: "auth__error", children: err });
   }
   if (Array.isArray(err)) {
@@ -1715,6 +1715,10 @@ const PostsListPage = () => {
   };
   if (statusFavList === "loading") return /* @__PURE__ */ jsxRuntimeExports.jsx(LoadingSpinner, {});
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "posts-list-page", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Helmet, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("title", { children: "Блокнот | Messarea" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("meta", { name: "description", content: "Список избранного" })
+    ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "posts-list-page__page-title", children: " Блокнот " }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "posts-list-page__tabs", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -1889,6 +1893,10 @@ const FeedPage = () => {
     if (node) observer.current.observe(node);
   }, [feedStatus, feedPage, feedTotalPages, dispatch]);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "feed-page", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Helmet, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("title", { children: "Лента постов | Messarea" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("meta", { name: "description", content: "Лента с постами" })
+    ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "feed-page__title", children: "Лента постов" }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "feed-page__posts", children: feedPosts.map((post, index) => /* @__PURE__ */ jsxRuntimeExports.jsx(
       PostCard$1,
@@ -3478,7 +3486,7 @@ const ListBlock = reactExports.forwardRef(({ initialBlocks, onChange }, ref) => 
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "listblock__add-menu-wrapper", children: /* @__PURE__ */ jsxRuntimeExports.jsx(AddMenu$1, { index: 0, onAdd: handleAddBlock }) }),
         isEmptyError && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "listblock__error", children: "Нельзя сохранить пустое содержимое статьи. Добавьте хотя бы один блок." }),
-        blocks.map((block, index) => /* @__PURE__ */ jsxRuntimeExports.jsxs(React3.Fragment, { children: [
+        blocks.map((block, index) => /* @__PURE__ */ jsxRuntimeExports.jsxs(React.Fragment, { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
             "div",
             {
@@ -3962,6 +3970,10 @@ const PostsSearchPage = () => {
     }
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "posts-search-page", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Helmet, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("title", { children: "Поиск по постам | Messarea" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("meta", { name: "description", content: "Поисковик" })
+    ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "posts-search-page__header", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "posts-search-page__title", children: "Поиск по постам" }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "posts-search-page__search-bar", children: [
@@ -4025,8 +4037,11 @@ const PostsSearchPage = () => {
   ] });
 };
 const HomePage = () => {
-  const [activeTab, setActiveTab] = reactExports.useState("featured");
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "home-page", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Helmet, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("title", { children: "Главная страница | Messarea" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("meta", { name: "description", content: "Главная страница" })
+    ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("section", { className: "hero-section", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "hero-content", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: "Делитесь смыслами, а не просто словами" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Создавайте посты из гибких блоков — добавляйте фото, текст и заголовки." }),

@@ -4,6 +4,7 @@ import { getApi } from '../../../utils/getApi';
 import { API_ROUTES } from '../../../constants/apiRoutes';
 import LoadingSpinner from '../../../components/common/LoadingSpinner/LoadingSpinner';
 import './PostsSearchPage.css';
+import { Helmet } from "react-helmet-async";
 
 const PostsSearchPage = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -71,6 +72,10 @@ const PostsSearchPage = () => {
 
     return (
         <div className="posts-search-page">
+            <Helmet>
+                <title>Поиск по постам | Messarea</title>
+                <meta name="description" content="Поисковик" />
+            </Helmet>
             <div className="posts-search-page__header">
                 <h1 className="posts-search-page__title">Поиск по постам</h1>
 

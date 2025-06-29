@@ -9,6 +9,7 @@ const require$$2 = require("react-router");
 const fa = require("react-icons/fa");
 const md = require("react-icons/md");
 const ri = require("react-icons/ri");
+const reactHelmetAsync = require("react-helmet-async");
 const fa6 = require("react-icons/fa6");
 const lu = require("react-icons/lu");
 const rx = require("react-icons/rx");
@@ -16,7 +17,6 @@ const gi = require("react-icons/gi");
 const bs = require("react-icons/bs");
 const bi = require("react-icons/bi");
 const io5 = require("react-icons/io5");
-const reactHelmetAsync = require("react-helmet-async");
 require("@remix-run/router");
 require("react-dom");
 const API_ROUTES = {
@@ -1720,6 +1720,10 @@ const PostsListPage = () => {
   };
   if (statusFavList === "loading") return /* @__PURE__ */ jsxRuntime.jsx(LoadingSpinner, {});
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "posts-list-page", children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(reactHelmetAsync.Helmet, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx("title", { children: "Блокнот | Messarea" }),
+      /* @__PURE__ */ jsxRuntime.jsx("meta", { name: "description", content: "Список избранного" })
+    ] }),
     /* @__PURE__ */ jsxRuntime.jsx("h1", { className: "posts-list-page__page-title", children: " Блокнот " }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "posts-list-page__tabs", children: [
       /* @__PURE__ */ jsxRuntime.jsx(
@@ -1894,6 +1898,10 @@ const FeedPage = () => {
     if (node) observer.current.observe(node);
   }, [feedStatus, feedPage, feedTotalPages, dispatch]);
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "feed-page", children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(reactHelmetAsync.Helmet, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx("title", { children: "Лента постов | Messarea" }),
+      /* @__PURE__ */ jsxRuntime.jsx("meta", { name: "description", content: "Лента с постами" })
+    ] }),
     /* @__PURE__ */ jsxRuntime.jsx("h1", { className: "feed-page__title", children: "Лента постов" }),
     /* @__PURE__ */ jsxRuntime.jsx("div", { className: "feed-page__posts", children: feedPosts.map((post, index) => /* @__PURE__ */ jsxRuntime.jsx(
       PostCard$1,
@@ -3967,6 +3975,10 @@ const PostsSearchPage = () => {
     }
   };
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "posts-search-page", children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(reactHelmetAsync.Helmet, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx("title", { children: "Поиск по постам | Messarea" }),
+      /* @__PURE__ */ jsxRuntime.jsx("meta", { name: "description", content: "Поисковик" })
+    ] }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "posts-search-page__header", children: [
       /* @__PURE__ */ jsxRuntime.jsx("h1", { className: "posts-search-page__title", children: "Поиск по постам" }),
       /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "posts-search-page__search-bar", children: [
@@ -4030,8 +4042,11 @@ const PostsSearchPage = () => {
   ] });
 };
 const HomePage = () => {
-  const [activeTab, setActiveTab] = React.useState("featured");
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "home-page", children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(reactHelmetAsync.Helmet, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx("title", { children: "Главная страница | Messarea" }),
+      /* @__PURE__ */ jsxRuntime.jsx("meta", { name: "description", content: "Главная страница" })
+    ] }),
     /* @__PURE__ */ jsxRuntime.jsx("section", { className: "hero-section", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "hero-content", children: [
       /* @__PURE__ */ jsxRuntime.jsx("h1", { children: "Делитесь смыслами, а не просто словами" }),
       /* @__PURE__ */ jsxRuntime.jsx("p", { children: "Создавайте посты из гибких блоков — добавляйте фото, текст и заголовки." }),

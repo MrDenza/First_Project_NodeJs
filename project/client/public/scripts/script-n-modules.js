@@ -7041,10 +7041,10 @@ function requireClient() {
 }
 var clientExports = requireClient();
 var reactExports = requireReact();
-const React3 = /* @__PURE__ */ getDefaultExportFromCjs(reactExports);
-const React = /* @__PURE__ */ _mergeNamespaces({
+const React = /* @__PURE__ */ getDefaultExportFromCjs(reactExports);
+const React$1 = /* @__PURE__ */ _mergeNamespaces({
   __proto__: null,
-  default: React3
+  default: React
 }, [reactExports]);
 requireReactDom();
 /**
@@ -8334,7 +8334,7 @@ try {
 } catch (e) {
 }
 const START_TRANSITION = "startTransition";
-const startTransitionImpl = React[START_TRANSITION];
+const startTransitionImpl = React$1[START_TRANSITION];
 function BrowserRouter(_ref4) {
   let {
     basename,
@@ -10680,7 +10680,7 @@ var DefaultContext = {
   style: void 0,
   attr: void 0
 };
-var IconContext = React3.createContext && /* @__PURE__ */ React3.createContext(DefaultContext);
+var IconContext = React.createContext && /* @__PURE__ */ React.createContext(DefaultContext);
 var _excluded = ["attr", "size", "title"];
 function _objectWithoutProperties(source, excluded) {
   if (source == null) return {};
@@ -10767,12 +10767,12 @@ function _toPrimitive(t, r) {
   return ("string" === r ? String : Number)(t);
 }
 function Tree2Element(tree) {
-  return tree && tree.map((node, i) => /* @__PURE__ */ React3.createElement(node.tag, _objectSpread({
+  return tree && tree.map((node, i) => /* @__PURE__ */ React.createElement(node.tag, _objectSpread({
     key: i
   }, node.attr), Tree2Element(node.child)));
 }
 function GenIcon(data) {
-  return (props) => /* @__PURE__ */ React3.createElement(IconBase, _extends({
+  return (props) => /* @__PURE__ */ React.createElement(IconBase, _extends({
     attr: _objectSpread({}, data.attr)
   }, props), Tree2Element(data.child));
 }
@@ -10787,7 +10787,7 @@ function IconBase(props) {
     var className;
     if (conf.className) className = conf.className;
     if (props.className) className = (className ? className + " " : "") + props.className;
-    return /* @__PURE__ */ React3.createElement("svg", _extends({
+    return /* @__PURE__ */ React.createElement("svg", _extends({
       stroke: "currentColor",
       fill: "currentColor",
       strokeWidth: "0"
@@ -10799,9 +10799,9 @@ function IconBase(props) {
       height: computedSize,
       width: computedSize,
       xmlns: "http://www.w3.org/2000/svg"
-    }), title && /* @__PURE__ */ React3.createElement("title", null, title), props.children);
+    }), title && /* @__PURE__ */ React.createElement("title", null, title), props.children);
   };
-  return IconContext !== void 0 ? /* @__PURE__ */ React3.createElement(IconContext.Consumer, null, (conf) => elem(conf)) : elem(DefaultContext);
+  return IconContext !== void 0 ? /* @__PURE__ */ React.createElement(IconContext.Consumer, null, (conf) => elem(conf)) : elem(DefaultContext);
 }
 function FaAlignCenter(props) {
   return GenIcon({ "attr": { "viewBox": "0 0 448 512" }, "child": [{ "tag": "path", "attr": { "d": "M432 160H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0 256H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zM108.1 96h231.81A12.09 12.09 0 0 0 352 83.9V44.09A12.09 12.09 0 0 0 339.91 32H108.1A12.09 12.09 0 0 0 96 44.09V83.9A12.1 12.1 0 0 0 108.1 96zm231.81 256A12.09 12.09 0 0 0 352 339.9v-39.81A12.09 12.09 0 0 0 339.91 288H108.1A12.09 12.09 0 0 0 96 300.09v39.81a12.1 12.1 0 0 0 12.1 12.1z" }, "child": [] }] })(props);
@@ -10859,36 +10859,6 @@ function MdOutlineSubtitles(props) {
 }
 function RiDeleteBin7Fill(props) {
   return GenIcon({ "attr": { "viewBox": "0 0 24 24", "fill": "currentColor" }, "child": [{ "tag": "path", "attr": { "d": "M7 6V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7ZM9 4V6H15V4H9Z" }, "child": [] }] })(props);
-}
-function FaT(props) {
-  return GenIcon({ "attr": { "viewBox": "0 0 384 512" }, "child": [{ "tag": "path", "attr": { "d": "M32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l128 0 0 352c0 17.7 14.3 32 32 32s32-14.3 32-32l0-352 128 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L192 32 32 32z" }, "child": [] }] })(props);
-}
-function LuHeading(props) {
-  return GenIcon({ "attr": { "viewBox": "0 0 24 24", "fill": "none", "stroke": "currentColor", "strokeWidth": "2", "strokeLinecap": "round", "strokeLinejoin": "round" }, "child": [{ "tag": "path", "attr": { "d": "M6 12h12" }, "child": [] }, { "tag": "path", "attr": { "d": "M6 20V4" }, "child": [] }, { "tag": "path", "attr": { "d": "M18 20V4" }, "child": [] }] })(props);
-}
-function RxBorderAll(props) {
-  return GenIcon({ "attr": { "viewBox": "0 0 15 15", "fill": "none" }, "child": [{ "tag": "path", "attr": { "fillRule": "evenodd", "clipRule": "evenodd", "d": "M0.25 1C0.25 0.585786 0.585786 0.25 1 0.25H14C14.4142 0.25 14.75 0.585786 14.75 1V14C14.75 14.4142 14.4142 14.75 14 14.75H1C0.585786 14.75 0.25 14.4142 0.25 14V1ZM1.75 1.75V13.25H13.25V1.75H1.75Z", "fill": "currentColor" }, "child": [] }, { "tag": "rect", "attr": { "x": "7", "y": "5", "width": "1", "height": "1", "rx": ".5", "fill": "currentColor" }, "child": [] }, { "tag": "rect", "attr": { "x": "7", "y": "3", "width": "1", "height": "1", "rx": ".5", "fill": "currentColor" }, "child": [] }, { "tag": "rect", "attr": { "x": "7", "y": "7", "width": "1", "height": "1", "rx": ".5", "fill": "currentColor" }, "child": [] }, { "tag": "rect", "attr": { "x": "5", "y": "7", "width": "1", "height": "1", "rx": ".5", "fill": "currentColor" }, "child": [] }, { "tag": "rect", "attr": { "x": "3", "y": "7", "width": "1", "height": "1", "rx": ".5", "fill": "currentColor" }, "child": [] }, { "tag": "rect", "attr": { "x": "9", "y": "7", "width": "1", "height": "1", "rx": ".5", "fill": "currentColor" }, "child": [] }, { "tag": "rect", "attr": { "x": "11", "y": "7", "width": "1", "height": "1", "rx": ".5", "fill": "currentColor" }, "child": [] }, { "tag": "rect", "attr": { "x": "7", "y": "9", "width": "1", "height": "1", "rx": ".5", "fill": "currentColor" }, "child": [] }, { "tag": "rect", "attr": { "x": "7", "y": "11", "width": "1", "height": "1", "rx": ".5", "fill": "currentColor" }, "child": [] }] })(props);
-}
-function RxBorderStyle(props) {
-  return GenIcon({ "attr": { "viewBox": "0 0 15 15", "fill": "none" }, "child": [{ "tag": "path", "attr": { "fillRule": "evenodd", "clipRule": "evenodd", "d": "M1.5 3C1.22386 3 1 3.22386 1 3.5C1 3.77614 1.22386 4 1.5 4H13.5C13.7761 4 14 3.77614 14 3.5C14 3.22386 13.7761 3 13.5 3H1.5ZM1 7.5C1 7.22386 1.22386 7 1.5 7H3.5C3.77614 7 4 7.22386 4 7.5C4 7.77614 3.77614 8 3.5 8H1.5C1.22386 8 1 7.77614 1 7.5ZM1 11.5C1 11.2239 1.22386 11 1.5 11C1.77614 11 2 11.2239 2 11.5C2 11.7761 1.77614 12 1.5 12C1.22386 12 1 11.7761 1 11.5ZM3 11.5C3 11.2239 3.22386 11 3.5 11C3.77614 11 4 11.2239 4 11.5C4 11.7761 3.77614 12 3.5 12C3.22386 12 3 11.7761 3 11.5ZM5.5 11C5.22386 11 5 11.2239 5 11.5C5 11.7761 5.22386 12 5.5 12C5.77614 12 6 11.7761 6 11.5C6 11.2239 5.77614 11 5.5 11ZM7 11.5C7 11.2239 7.22386 11 7.5 11C7.77614 11 8 11.2239 8 11.5C8 11.7761 7.77614 12 7.5 12C7.22386 12 7 11.7761 7 11.5ZM9.5 11C9.22386 11 9 11.2239 9 11.5C9 11.7761 9.22386 12 9.5 12C9.77614 12 10 11.7761 10 11.5C10 11.2239 9.77614 11 9.5 11ZM11 11.5C11 11.2239 11.2239 11 11.5 11C11.7761 11 12 11.2239 12 11.5C12 11.7761 11.7761 12 11.5 12C11.2239 12 11 11.7761 11 11.5ZM13.5 11C13.2239 11 13 11.2239 13 11.5C13 11.7761 13.2239 12 13.5 12C13.7761 12 14 11.7761 14 11.5C14 11.2239 13.7761 11 13.5 11ZM6.5 7C6.22386 7 6 7.22386 6 7.5C6 7.77614 6.22386 8 6.5 8H8.5C8.77614 8 9 7.77614 9 7.5C9 7.22386 8.77614 7 8.5 7H6.5ZM11 7.5C11 7.22386 11.2239 7 11.5 7H13.5C13.7761 7 14 7.22386 14 7.5C14 7.77614 13.7761 8 13.5 8H11.5C11.2239 8 11 7.77614 11 7.5Z", "fill": "currentColor" }, "child": [] }] })(props);
-}
-function GiResize(props) {
-  return GenIcon({ "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M29 30l1 90h36V66h26V30H29zm99 0v36h72V30h-72zm108 0v36h72V30h-72zm108 0v36h72V30h-72zm102 0v78h36V30h-36zm-206 80v36h100.543l-118 118H30v218h218V289.457l118-118V272h36V110H240zm206 34v72h36v-72h-36zM30 156v72h36v-72H30zm416 96v72h36v-72h-36zm0 108v72h36v-72h-36zm-166 86v36h72v-36h-72zm108 0v36h72v-36h-72z" }, "child": [] }] })(props);
-}
-function BsBorderWidth(props) {
-  return GenIcon({ "attr": { "fill": "currentColor", "viewBox": "0 0 16 16" }, "child": [{ "tag": "path", "attr": { "d": "M0 3.5A.5.5 0 0 1 .5 3h15a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5zm0 5A.5.5 0 0 1 .5 8h15a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h15a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5" }, "child": [] }] })(props);
-}
-function BiBorderRadius(props) {
-  return GenIcon({ "attr": { "viewBox": "0 0 24 24" }, "child": [{ "tag": "path", "attr": { "d": "M19 19h2v2h-2zM7 19h2v2H7zm8 0h2v2h-2zm-4 0h2v2h-2zm-8 0h2v2H3zm0-4h2v2H3zm0-8h2v2H3zm0 4h2v2H3zm0-8h2v2H3zm4 0h2v2H7zm12 12h2v2h-2zM16 3h-5v2h5c1.654 0 3 1.346 3 3v5h2V8c0-2.757-2.243-5-5-5z" }, "child": [] }] })(props);
-}
-function IoEyeSharp(props) {
-  return GenIcon({ "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "circle", "attr": { "cx": "256", "cy": "256", "r": "64" }, "child": [] }, { "tag": "path", "attr": { "d": "M394.82 141.18C351.1 111.2 304.31 96 255.76 96c-43.69 0-86.28 13-126.59 38.48C88.52 160.23 48.67 207 16 256c26.42 44 62.56 89.24 100.2 115.18C159.38 400.92 206.33 416 255.76 416c49 0 95.85-15.07 139.3-44.79C433.31 345 469.71 299.82 496 256c-26.38-43.43-62.9-88.56-101.18-114.82zM256 352a96 96 0 1 1 96-96 96.11 96.11 0 0 1-96 96z" }, "child": [] }] })(props);
-}
-function IoSave(props) {
-  return GenIcon({ "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "m465.94 119.76-73.7-73.7A47.68 47.68 0 0 0 358.3 32H96a64 64 0 0 0-64 64v320a64 64 0 0 0 64 64h320a64 64 0 0 0 64-64V153.7a47.68 47.68 0 0 0-14.06-33.94zM120 112h176a8 8 0 0 1 8 8v48a8 8 0 0 1-8 8H120a8 8 0 0 1-8-8v-48a8 8 0 0 1 8-8zm139.75 319.91a80 80 0 1 1 76.16-76.16 80.06 80.06 0 0 1-76.16 76.16z" }, "child": [] }, { "tag": "circle", "attr": { "cx": "256", "cy": "352", "r": "48" }, "child": [] }] })(props);
-}
-function IoSettings(props) {
-  return GenIcon({ "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "circle", "attr": { "cx": "256", "cy": "256", "r": "48" }, "child": [] }, { "tag": "path", "attr": { "d": "m470.39 300-.47-.38-31.56-24.75a16.11 16.11 0 0 1-6.1-13.33v-11.56a16 16 0 0 1 6.11-13.22L469.92 212l.47-.38a26.68 26.68 0 0 0 5.9-34.06l-42.71-73.9a1.59 1.59 0 0 1-.13-.22A26.86 26.86 0 0 0 401 92.14l-.35.13-37.1 14.93a15.94 15.94 0 0 1-14.47-1.29q-4.92-3.1-10-5.86a15.94 15.94 0 0 1-8.19-11.82l-5.59-39.59-.12-.72A27.22 27.22 0 0 0 298.76 26h-85.52a26.92 26.92 0 0 0-26.45 22.39l-.09.56-5.57 39.67a16 16 0 0 1-8.13 11.82 175.21 175.21 0 0 0-10 5.82 15.92 15.92 0 0 1-14.43 1.27l-37.13-15-.35-.14a26.87 26.87 0 0 0-32.48 11.34l-.13.22-42.77 73.95a26.71 26.71 0 0 0 5.9 34.1l.47.38 31.56 24.75a16.11 16.11 0 0 1 6.1 13.33v11.56a16 16 0 0 1-6.11 13.22L42.08 300l-.47.38a26.68 26.68 0 0 0-5.9 34.06l42.71 73.9a1.59 1.59 0 0 1 .13.22 26.86 26.86 0 0 0 32.45 11.3l.35-.13 37.07-14.93a15.94 15.94 0 0 1 14.47 1.29q4.92 3.11 10 5.86a15.94 15.94 0 0 1 8.19 11.82l5.56 39.59.12.72A27.22 27.22 0 0 0 213.24 486h85.52a26.92 26.92 0 0 0 26.45-22.39l.09-.56 5.57-39.67a16 16 0 0 1 8.18-11.82c3.42-1.84 6.76-3.79 10-5.82a15.92 15.92 0 0 1 14.43-1.27l37.13 14.95.35.14a26.85 26.85 0 0 0 32.48-11.34 2.53 2.53 0 0 1 .13-.22l42.71-73.89a26.7 26.7 0 0 0-5.89-34.11zm-134.48-40.24a80 80 0 1 1-83.66-83.67 80.21 80.21 0 0 1 83.66 83.67z" }, "child": [] }] })(props);
 }
 var reactFastCompare;
 var hasRequiredReactFastCompare;
@@ -11353,7 +11323,7 @@ var generateTitleAsReactComponent = (_type, title, attributes) => {
     [HELMET_ATTRIBUTE]: true
   };
   const props = convertElementAttributesToReactProps(attributes, initProps);
-  return [React3.createElement("title", props, title)];
+  return [React.createElement("title", props, title)];
 };
 var generateTagsAsReactComponent = (type, tags) => tags.map((tag, i) => {
   const mappedTag = {
@@ -11370,7 +11340,7 @@ var generateTagsAsReactComponent = (type, tags) => tags.map((tag, i) => {
       mappedTag[mappedAttribute] = tag[attribute];
     }
   });
-  return React3.createElement(type, mappedTag);
+  return React.createElement(type, mappedTag);
 });
 var getMethodsForTag = (type, tags, encode = true) => {
   switch (type) {
@@ -11494,7 +11464,7 @@ var HelmetData = class {
   }
 };
 var defaultValue = {};
-var Context = React3.createContext(defaultValue);
+var Context = React.createContext(defaultValue);
 var HelmetProvider = (_a = class extends reactExports.Component {
   constructor(props) {
     super(props);
@@ -11502,7 +11472,7 @@ var HelmetProvider = (_a = class extends reactExports.Component {
     this.helmetData = new HelmetData(this.props.context || {}, _a.canUseDOM);
   }
   render() {
-    return /* @__PURE__ */ React3.createElement(Context.Provider, { value: this.helmetData.value }, this.props.children);
+    return /* @__PURE__ */ React.createElement(Context.Provider, { value: this.helmetData.value }, this.props.children);
   }
 }, __publicField(_a, "canUseDOM", isDocument), _a);
 var updateTags = (type, tags) => {
@@ -11786,7 +11756,7 @@ var Helmet = (_b = class extends reactExports.Component {
   }
   mapChildrenToProps(children, newProps) {
     let arrayTypeChildren = {};
-    React3.Children.forEach(children, (child) => {
+    React.Children.forEach(children, (child) => {
       if (!child || !child.props) {
         return;
       }
@@ -11836,13 +11806,43 @@ var Helmet = (_b = class extends reactExports.Component {
       helmetData = new HelmetData(data.context, true);
       delete newProps.helmetData;
     }
-    return helmetData ? /* @__PURE__ */ React3.createElement(HelmetDispatcher, { ...newProps, context: helmetData.value }) : /* @__PURE__ */ React3.createElement(Context.Consumer, null, (context) => /* @__PURE__ */ React3.createElement(HelmetDispatcher, { ...newProps, context }));
+    return helmetData ? /* @__PURE__ */ React.createElement(HelmetDispatcher, { ...newProps, context: helmetData.value }) : /* @__PURE__ */ React.createElement(Context.Consumer, null, (context) => /* @__PURE__ */ React.createElement(HelmetDispatcher, { ...newProps, context }));
   }
 }, __publicField(_b, "defaultProps", {
   defer: true,
   encodeSpecialCharacters: true,
   prioritizeSeoTags: false
 }), _b);
+function FaT(props) {
+  return GenIcon({ "attr": { "viewBox": "0 0 384 512" }, "child": [{ "tag": "path", "attr": { "d": "M32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l128 0 0 352c0 17.7 14.3 32 32 32s32-14.3 32-32l0-352 128 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L192 32 32 32z" }, "child": [] }] })(props);
+}
+function LuHeading(props) {
+  return GenIcon({ "attr": { "viewBox": "0 0 24 24", "fill": "none", "stroke": "currentColor", "strokeWidth": "2", "strokeLinecap": "round", "strokeLinejoin": "round" }, "child": [{ "tag": "path", "attr": { "d": "M6 12h12" }, "child": [] }, { "tag": "path", "attr": { "d": "M6 20V4" }, "child": [] }, { "tag": "path", "attr": { "d": "M18 20V4" }, "child": [] }] })(props);
+}
+function RxBorderAll(props) {
+  return GenIcon({ "attr": { "viewBox": "0 0 15 15", "fill": "none" }, "child": [{ "tag": "path", "attr": { "fillRule": "evenodd", "clipRule": "evenodd", "d": "M0.25 1C0.25 0.585786 0.585786 0.25 1 0.25H14C14.4142 0.25 14.75 0.585786 14.75 1V14C14.75 14.4142 14.4142 14.75 14 14.75H1C0.585786 14.75 0.25 14.4142 0.25 14V1ZM1.75 1.75V13.25H13.25V1.75H1.75Z", "fill": "currentColor" }, "child": [] }, { "tag": "rect", "attr": { "x": "7", "y": "5", "width": "1", "height": "1", "rx": ".5", "fill": "currentColor" }, "child": [] }, { "tag": "rect", "attr": { "x": "7", "y": "3", "width": "1", "height": "1", "rx": ".5", "fill": "currentColor" }, "child": [] }, { "tag": "rect", "attr": { "x": "7", "y": "7", "width": "1", "height": "1", "rx": ".5", "fill": "currentColor" }, "child": [] }, { "tag": "rect", "attr": { "x": "5", "y": "7", "width": "1", "height": "1", "rx": ".5", "fill": "currentColor" }, "child": [] }, { "tag": "rect", "attr": { "x": "3", "y": "7", "width": "1", "height": "1", "rx": ".5", "fill": "currentColor" }, "child": [] }, { "tag": "rect", "attr": { "x": "9", "y": "7", "width": "1", "height": "1", "rx": ".5", "fill": "currentColor" }, "child": [] }, { "tag": "rect", "attr": { "x": "11", "y": "7", "width": "1", "height": "1", "rx": ".5", "fill": "currentColor" }, "child": [] }, { "tag": "rect", "attr": { "x": "7", "y": "9", "width": "1", "height": "1", "rx": ".5", "fill": "currentColor" }, "child": [] }, { "tag": "rect", "attr": { "x": "7", "y": "11", "width": "1", "height": "1", "rx": ".5", "fill": "currentColor" }, "child": [] }] })(props);
+}
+function RxBorderStyle(props) {
+  return GenIcon({ "attr": { "viewBox": "0 0 15 15", "fill": "none" }, "child": [{ "tag": "path", "attr": { "fillRule": "evenodd", "clipRule": "evenodd", "d": "M1.5 3C1.22386 3 1 3.22386 1 3.5C1 3.77614 1.22386 4 1.5 4H13.5C13.7761 4 14 3.77614 14 3.5C14 3.22386 13.7761 3 13.5 3H1.5ZM1 7.5C1 7.22386 1.22386 7 1.5 7H3.5C3.77614 7 4 7.22386 4 7.5C4 7.77614 3.77614 8 3.5 8H1.5C1.22386 8 1 7.77614 1 7.5ZM1 11.5C1 11.2239 1.22386 11 1.5 11C1.77614 11 2 11.2239 2 11.5C2 11.7761 1.77614 12 1.5 12C1.22386 12 1 11.7761 1 11.5ZM3 11.5C3 11.2239 3.22386 11 3.5 11C3.77614 11 4 11.2239 4 11.5C4 11.7761 3.77614 12 3.5 12C3.22386 12 3 11.7761 3 11.5ZM5.5 11C5.22386 11 5 11.2239 5 11.5C5 11.7761 5.22386 12 5.5 12C5.77614 12 6 11.7761 6 11.5C6 11.2239 5.77614 11 5.5 11ZM7 11.5C7 11.2239 7.22386 11 7.5 11C7.77614 11 8 11.2239 8 11.5C8 11.7761 7.77614 12 7.5 12C7.22386 12 7 11.7761 7 11.5ZM9.5 11C9.22386 11 9 11.2239 9 11.5C9 11.7761 9.22386 12 9.5 12C9.77614 12 10 11.7761 10 11.5C10 11.2239 9.77614 11 9.5 11ZM11 11.5C11 11.2239 11.2239 11 11.5 11C11.7761 11 12 11.2239 12 11.5C12 11.7761 11.7761 12 11.5 12C11.2239 12 11 11.7761 11 11.5ZM13.5 11C13.2239 11 13 11.2239 13 11.5C13 11.7761 13.2239 12 13.5 12C13.7761 12 14 11.7761 14 11.5C14 11.2239 13.7761 11 13.5 11ZM6.5 7C6.22386 7 6 7.22386 6 7.5C6 7.77614 6.22386 8 6.5 8H8.5C8.77614 8 9 7.77614 9 7.5C9 7.22386 8.77614 7 8.5 7H6.5ZM11 7.5C11 7.22386 11.2239 7 11.5 7H13.5C13.7761 7 14 7.22386 14 7.5C14 7.77614 13.7761 8 13.5 8H11.5C11.2239 8 11 7.77614 11 7.5Z", "fill": "currentColor" }, "child": [] }] })(props);
+}
+function GiResize(props) {
+  return GenIcon({ "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M29 30l1 90h36V66h26V30H29zm99 0v36h72V30h-72zm108 0v36h72V30h-72zm108 0v36h72V30h-72zm102 0v78h36V30h-36zm-206 80v36h100.543l-118 118H30v218h218V289.457l118-118V272h36V110H240zm206 34v72h36v-72h-36zM30 156v72h36v-72H30zm416 96v72h36v-72h-36zm0 108v72h36v-72h-36zm-166 86v36h72v-36h-72zm108 0v36h72v-36h-72z" }, "child": [] }] })(props);
+}
+function BsBorderWidth(props) {
+  return GenIcon({ "attr": { "fill": "currentColor", "viewBox": "0 0 16 16" }, "child": [{ "tag": "path", "attr": { "d": "M0 3.5A.5.5 0 0 1 .5 3h15a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5zm0 5A.5.5 0 0 1 .5 8h15a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h15a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5" }, "child": [] }] })(props);
+}
+function BiBorderRadius(props) {
+  return GenIcon({ "attr": { "viewBox": "0 0 24 24" }, "child": [{ "tag": "path", "attr": { "d": "M19 19h2v2h-2zM7 19h2v2H7zm8 0h2v2h-2zm-4 0h2v2h-2zm-8 0h2v2H3zm0-4h2v2H3zm0-8h2v2H3zm0 4h2v2H3zm0-8h2v2H3zm4 0h2v2H7zm12 12h2v2h-2zM16 3h-5v2h5c1.654 0 3 1.346 3 3v5h2V8c0-2.757-2.243-5-5-5z" }, "child": [] }] })(props);
+}
+function IoEyeSharp(props) {
+  return GenIcon({ "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "circle", "attr": { "cx": "256", "cy": "256", "r": "64" }, "child": [] }, { "tag": "path", "attr": { "d": "M394.82 141.18C351.1 111.2 304.31 96 255.76 96c-43.69 0-86.28 13-126.59 38.48C88.52 160.23 48.67 207 16 256c26.42 44 62.56 89.24 100.2 115.18C159.38 400.92 206.33 416 255.76 416c49 0 95.85-15.07 139.3-44.79C433.31 345 469.71 299.82 496 256c-26.38-43.43-62.9-88.56-101.18-114.82zM256 352a96 96 0 1 1 96-96 96.11 96.11 0 0 1-96 96z" }, "child": [] }] })(props);
+}
+function IoSave(props) {
+  return GenIcon({ "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "m465.94 119.76-73.7-73.7A47.68 47.68 0 0 0 358.3 32H96a64 64 0 0 0-64 64v320a64 64 0 0 0 64 64h320a64 64 0 0 0 64-64V153.7a47.68 47.68 0 0 0-14.06-33.94zM120 112h176a8 8 0 0 1 8 8v48a8 8 0 0 1-8 8H120a8 8 0 0 1-8-8v-48a8 8 0 0 1 8-8zm139.75 319.91a80 80 0 1 1 76.16-76.16 80.06 80.06 0 0 1-76.16 76.16z" }, "child": [] }, { "tag": "circle", "attr": { "cx": "256", "cy": "352", "r": "48" }, "child": [] }] })(props);
+}
+function IoSettings(props) {
+  return GenIcon({ "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "circle", "attr": { "cx": "256", "cy": "256", "r": "48" }, "child": [] }, { "tag": "path", "attr": { "d": "m470.39 300-.47-.38-31.56-24.75a16.11 16.11 0 0 1-6.1-13.33v-11.56a16 16 0 0 1 6.11-13.22L469.92 212l.47-.38a26.68 26.68 0 0 0 5.9-34.06l-42.71-73.9a1.59 1.59 0 0 1-.13-.22A26.86 26.86 0 0 0 401 92.14l-.35.13-37.1 14.93a15.94 15.94 0 0 1-14.47-1.29q-4.92-3.1-10-5.86a15.94 15.94 0 0 1-8.19-11.82l-5.59-39.59-.12-.72A27.22 27.22 0 0 0 298.76 26h-85.52a26.92 26.92 0 0 0-26.45 22.39l-.09.56-5.57 39.67a16 16 0 0 1-8.13 11.82 175.21 175.21 0 0 0-10 5.82 15.92 15.92 0 0 1-14.43 1.27l-37.13-15-.35-.14a26.87 26.87 0 0 0-32.48 11.34l-.13.22-42.77 73.95a26.71 26.71 0 0 0 5.9 34.1l.47.38 31.56 24.75a16.11 16.11 0 0 1 6.1 13.33v11.56a16 16 0 0 1-6.11 13.22L42.08 300l-.47.38a26.68 26.68 0 0 0-5.9 34.06l42.71 73.9a1.59 1.59 0 0 1 .13.22 26.86 26.86 0 0 0 32.45 11.3l.35-.13 37.07-14.93a15.94 15.94 0 0 1 14.47 1.29q4.92 3.11 10 5.86a15.94 15.94 0 0 1 8.19 11.82l5.56 39.59.12.72A27.22 27.22 0 0 0 213.24 486h85.52a26.92 26.92 0 0 0 26.45-22.39l.09-.56 5.57-39.67a16 16 0 0 1 8.18-11.82c3.42-1.84 6.76-3.79 10-5.82a15.92 15.92 0 0 1 14.43-1.27l37.13 14.95.35.14a26.85 26.85 0 0 0 32.48-11.34 2.53 2.53 0 0 1 .13-.22l42.71-73.89a26.7 26.7 0 0 0-5.89-34.11zm-134.48-40.24a80 80 0 1 1-83.66-83.67 80.21 80.21 0 0 1 83.66 83.67z" }, "child": [] }] })(props);
+}
 export {
   MdOutlineSubtitlesOff as A,
   RxBorderAll as B,
@@ -11851,9 +11851,9 @@ export {
   BiBorderRadius as E,
   FaBookmark as F,
   GiResize as G,
-  FaGripLines as H,
-  IoSettings as I,
-  Helmet as J,
+  Helmet as H,
+  FaGripLines as I,
+  IoSettings as J,
   IoEyeSharp as K,
   Link as L,
   MdEdit as M,
@@ -11861,7 +11861,7 @@ export {
   Outlet as O,
   FaRegBookmark as P,
   useParams as Q,
-  React3 as R,
+  React as R,
   Navigate as S,
   Routes as T,
   Route as U,

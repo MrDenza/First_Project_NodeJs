@@ -4,6 +4,7 @@ import { fetchFeedPosts } from "../../../redux/reducers/postsData/postsDataSlice
 import PostCard from "../../../components/Post/PostCard";
 import LoadingSpinner from "../../../components/common/LoadingSpinner/LoadingSpinner";
 import "./FeedPage.css";
+import { Helmet } from "react-helmet-async";
 
 const FeedPage = () => {
     const dispatch = useDispatch();
@@ -40,6 +41,11 @@ const FeedPage = () => {
 
     return (
         <div className="feed-page">
+            <Helmet>
+                <title>Лента постов | Messarea</title>
+                <meta name="description" content="Лента с постами" />
+            </Helmet>
+
             <h1 className="feed-page__title">Лента постов</h1>
 
             <div className="feed-page__posts">

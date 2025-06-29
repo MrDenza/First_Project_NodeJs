@@ -1,34 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './HomePage.css';
+import { Helmet } from "react-helmet-async";
 
 const HomePage = () => {
-    const [activeTab, setActiveTab] = useState('featured');
-
-    // Пример данных постов
-    const featuredPosts = [
-        {
-            id: 1,
-            title: "Как я научился выражать мысли",
-            description: "История о том, как блочный редактор изменил мой подход к письму",
-            author: "Максим Иванов",
-            date: "15 мая 2023",
-            image: "https://via.placeholder.com/800x400?text=Мысли+в+блоках",
-            favorites: 42
-        },
-        {
-            id: 2,
-            title: "10 идей для вашего первого поста",
-            description: "С чего начать, когда кажется, что сказать нечего",
-            author: "Анна Смирнова",
-            date: "12 мая 2023",
-            image: "https://via.placeholder.com/800x400?text=Идеи+для+поста",
-            favorites: 31
-        }
-    ];
 
     return (
         <div className="home-page">
+            <Helmet>
+                <title>Главная страница | Messarea</title>
+                <meta name="description" content="Главная страница" />
+            </Helmet>
             {/* Герой-секция */}
             <section className="hero-section">
                 <div className="hero-content">

@@ -12,6 +12,7 @@ import { FaBookmark } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 import { RiDeleteBin7Fill } from "react-icons/ri";
 import './PostsListPage.css';
+import { Helmet } from "react-helmet-async";
 
 const PostsListPage = () => {
     const dispatch = useDispatch();
@@ -59,6 +60,10 @@ const PostsListPage = () => {
 
     return (
         <div className="posts-list-page">
+            <Helmet>
+                <title>Блокнот | Messarea</title>
+                <meta name="description" content="Список избранного" />
+            </Helmet>
             <h1 className="posts-list-page__page-title"> Блокнот </h1>
 
             <div className="posts-list-page__tabs">
